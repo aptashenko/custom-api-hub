@@ -1,0 +1,24 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+
+import { HealthModule } from './health/health.module';
+import { SendPulseModule } from './integrations/sendpulse/sendpulse.module';
+import { MakeSyncModule } from './make-sync/make-sync.module';
+import { RawEventsModule } from './raw-events/raw-events.module';
+import { TypeormModule } from './typeorm/typeorm.module';
+import { WebhooksModule } from './webhooks/webhooks.module';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeormModule,
+    HealthModule,
+    RawEventsModule,
+    MakeSyncModule,
+    SendPulseModule,
+    WebhooksModule,
+  ],
+})
+export class AppModule {}
