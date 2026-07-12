@@ -5,6 +5,7 @@ import { LeadSourcesService } from './lead-sources.service';
 
 describe('LeadSourcesService', () => {
   let repository: {
+    findOne: jest.Mock;
     create: jest.Mock;
     save: jest.Mock;
   };
@@ -24,6 +25,7 @@ describe('LeadSourcesService', () => {
 
   beforeEach(() => {
     repository = {
+      findOne: jest.fn().mockResolvedValue(null),
       create: jest.fn((input) => input),
       save: jest.fn((input) =>
         Promise.resolve({ id: 'lead-source-id', ...input }),
@@ -49,10 +51,38 @@ describe('LeadSourcesService', () => {
       clientId: 'client-id',
       utmSource: 'google',
       utmMedium: 'cpc',
-      utmCampaign: undefined,
-      utmContent: undefined,
-      utmTerm: undefined,
+      utmCampaign: null,
+      utmContent: null,
+      utmTerm: null,
     });
+  });
+
+  it('returns existing lead source for duplicate UTM data', async () => {
+    repository.findOne.mockResolvedValue({
+      id: 'existing-lead-source-id',
+      clientId: 'client-id',
+      utmSource: 'google',
+      utmMedium: 'cpc',
+      utmCampaign: null,
+      utmContent: null,
+      utmTerm: null,
+    });
+
+    const result = await service.createFromEvent({
+      client,
+      event: {
+        ...baseEvent,
+        utm: {
+          source: ' google ',
+          medium: 'cpc',
+        },
+      },
+    });
+
+    expect(result?.id).toBe('existing-lead-source-id');
+    expect(repository.findOne).toHaveBeenCalled();
+    expect(repository.create).not.toHaveBeenCalled();
+    expect(repository.save).not.toHaveBeenCalled();
   });
 
   it('does not create lead source when UTM is empty', async () => {
@@ -65,6 +95,7 @@ describe('LeadSourcesService', () => {
     });
 
     expect(result).toBeNull();
+    expect(repository.findOne).not.toHaveBeenCalled();
     expect(repository.create).not.toHaveBeenCalled();
     expect(repository.save).not.toHaveBeenCalled();
   });
