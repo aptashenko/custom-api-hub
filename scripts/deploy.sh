@@ -49,8 +49,20 @@ fi
 pm2 save
 
 echo "Checking health endpoint..."
-curl --fail --silent --show-error "$HEALTH_URL"
-echo
+for attempt in 1 2 3 4 5 6 7 8 9 10; do
+  if curl --fail --silent --show-error "$HEALTH_URL"; then
+    echo
+    break
+  fi
+
+  if [ "$attempt" -eq 10 ]; then
+    echo "Health check failed after ${attempt} attempts."
+    exit 1
+  fi
+
+  echo "Health check failed, retrying in 3 seconds..."
+  sleep 3
+done
 
 echo "Deploy completed."
 REMOTE_SCRIPT
