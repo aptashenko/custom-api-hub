@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AggregationService } from '../aggregation/aggregation.service';
 import { ClientResolverService } from '../clients/client-resolver.service';
 import { SendPulseNormalizer } from '../events/normalizers/sendpulse.normalizer';
+import { SendPulseProfilesService } from '../integrations/sendpulse/sendpulse-profiles.service';
 import { LeadSourcesService } from '../lead-sources/lead-sources.service';
 import { MessagesService } from '../messages/messages.service';
 import { RawEventsService } from '../raw-events/raw-events.service';
@@ -22,6 +23,9 @@ describe('SendpulseWebhookController', () => {
   let aggregationService: jest.Mocked<
     Pick<AggregationService, 'scheduleFromMessage'>
   >;
+  let sendPulseProfilesService: jest.Mocked<
+    Pick<SendPulseProfilesService, 'upsertFromWebhookPayload'>
+  >;
 
   beforeEach(async () => {
     rawEventsService = {
@@ -38,6 +42,9 @@ describe('SendpulseWebhookController', () => {
     };
     aggregationService = {
       scheduleFromMessage: jest.fn(),
+    };
+    sendPulseProfilesService = {
+      upsertFromWebhookPayload: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -62,6 +69,10 @@ describe('SendpulseWebhookController', () => {
         {
           provide: AggregationService,
           useValue: aggregationService,
+        },
+        {
+          provide: SendPulseProfilesService,
+          useValue: sendPulseProfilesService,
         },
         SendPulseNormalizer,
       ],
@@ -98,6 +109,9 @@ describe('SendpulseWebhookController', () => {
     leadSourcesService.createFromEvent.mockResolvedValue({
       id: 'lead-source-id',
     } as never);
+    sendPulseProfilesService.upsertFromWebhookPayload.mockResolvedValue({
+      id: 'sendpulse-profile-id',
+    } as never);
 
     await expect(controller.receive(payload)).resolves.toEqual({
       status: 'received',
@@ -107,6 +121,7 @@ describe('SendpulseWebhookController', () => {
       channel: 'SENDPULSE',
       clientId: 'client-id',
       identityId: 'identity-id',
+      sendPulseProfileId: 'sendpulse-profile-id',
       messageId: 'message-id',
       leadSourceId: 'lead-source-id',
       aggregationScheduled: true,
@@ -121,5 +136,16 @@ describe('SendpulseWebhookController', () => {
       channel: 'SENDPULSE',
       messageId: 'message-id',
     });
+    expect(sendPulseProfilesService.upsertFromWebhookPayload).toHaveBeenCalledWith(
+      payload,
+      {
+        client: {
+          id: 'client-id',
+        },
+        identity: {
+          id: 'identity-id',
+        },
+      },
+    );
   });
 });

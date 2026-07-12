@@ -19,12 +19,24 @@ export class Client {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Index('IDX_client_client_number')
+  @Column({
+    type: 'integer',
+    unique: true,
+    default: () => "nextval('client_number_seq')",
+  })
+  clientNumber: number;
+
   @Column({ type: 'varchar', nullable: true })
   name?: string | null;
 
   @Index('IDX_client_phone')
   @Column({ type: 'varchar', nullable: true })
   phone?: string | null;
+
+  @Index('IDX_client_phone_normalized')
+  @Column({ type: 'varchar', nullable: true })
+  phoneNormalized?: string | null;
 
   @Index('IDX_client_email')
   @Column({ type: 'varchar', nullable: true })

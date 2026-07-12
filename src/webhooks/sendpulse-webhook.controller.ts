@@ -3,6 +3,7 @@ import { Body, Controller, Logger, Post } from '@nestjs/common';
 import { AggregationService } from '../aggregation/aggregation.service';
 import { ClientResolverService } from '../clients/client-resolver.service';
 import { SendPulseNormalizer } from '../events/normalizers/sendpulse.normalizer';
+import { SendPulseProfilesService } from '../integrations/sendpulse/sendpulse-profiles.service';
 import { LeadSourcesService } from '../lead-sources/lead-sources.service';
 import { MessagesService } from '../messages/messages.service';
 import { RawEventsService } from '../raw-events/raw-events.service';
@@ -21,6 +22,7 @@ export class SendpulseWebhookController {
     private readonly messagesService: MessagesService,
     private readonly leadSourcesService: LeadSourcesService,
     private readonly aggregationService: AggregationService,
+    private readonly sendPulseProfilesService: SendPulseProfilesService,
   ) {}
 
   @Post()
@@ -40,6 +42,11 @@ export class SendpulseWebhookController {
 
     const { client, identity } =
       await this.clientResolverService.resolveFromEvent(normalized);
+    const sendPulseProfile =
+      await this.sendPulseProfilesService.upsertFromWebhookPayload(body, {
+        client,
+        identity,
+      });
     const message = await this.messagesService.createFromEvent({
       event: normalized,
       client,
@@ -70,6 +77,7 @@ export class SendpulseWebhookController {
       channel: normalized.channel,
       clientId: client.id,
       identityId: identity?.id,
+      sendPulseProfileId: sendPulseProfile?.id,
       messageId: message?.id,
       leadSourceId: leadSource?.id,
       aggregationScheduled,

@@ -72,13 +72,18 @@ export class SendPulseNormalizer {
       client: {
         name:
           this.getString(eventPayload, ['contact', 'name']) ??
+          this.getString(eventPayload, ['contact', 'variables', 'name']) ??
           this.getString(eventPayload, ['name']) ??
           this.getString(eventPayload, ['user', 'name']),
         phone:
           this.getString(eventPayload, ['contact', 'phone']) ??
+          this.getString(eventPayload, ['contact', 'variables', 'phone']) ??
+          this.getString(eventPayload, ['contact', 'variables', 'Phone']) ??
           this.getString(eventPayload, ['phone']),
         email:
           this.getString(eventPayload, ['contact', 'email']) ??
+          this.getString(eventPayload, ['contact', 'variables', 'email']) ??
+          this.getString(eventPayload, ['contact', 'variables', 'Email']) ??
           this.getString(eventPayload, ['email']),
         username:
           this.getString(eventPayload, ['contact', 'username']) ??

@@ -42,6 +42,10 @@ export class ContactIdentity {
   @Column({ type: 'varchar', nullable: true })
   phone?: string | null;
 
+  @Index('IDX_contact_identity_phone_normalized')
+  @Column({ type: 'varchar', nullable: true })
+  phoneNormalized?: string | null;
+
   @Column({ type: 'varchar', nullable: true })
   email?: string | null;
 

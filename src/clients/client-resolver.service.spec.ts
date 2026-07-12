@@ -62,6 +62,7 @@ describe('ClientResolverService', () => {
     expect(clientsRepository.create).toHaveBeenCalledWith({
       name: 'Alex',
       phone: '+10000000000',
+      phoneNormalized: '10000000000',
       email: 'alex@example.com',
     });
   });
@@ -77,9 +78,7 @@ describe('ClientResolverService', () => {
     const result = await service.resolveFromEvent({
       ...baseEvent,
       externalUserId: 'telegram-user-id',
-      client: {
-        phone: '+10000000000',
-      },
+      client: {},
     });
 
     expect(result).toEqual({
@@ -91,7 +90,11 @@ describe('ClientResolverService', () => {
   });
 
   it('finds client by phone', async () => {
-    const client = { id: 'client-by-phone', phone: '+10000000000' };
+    const client = {
+      id: 'client-by-phone',
+      phone: '+10000000000',
+      phoneNormalized: '10000000000',
+    };
     clientsRepository.findOne.mockResolvedValueOnce(client);
 
     const result = await service.resolveFromEvent({
@@ -104,14 +107,20 @@ describe('ClientResolverService', () => {
     expect(result.client).toBe(client);
     expect(clientsRepository.findOne).toHaveBeenCalledWith({
       where: {
-        phone: '+10000000000',
+        phoneNormalized: '10000000000',
       },
     });
   });
 
   it('finds client by email', async () => {
-    const client = { id: 'client-by-email', email: 'alex@example.com' };
+    const client = {
+      id: 'client-by-email',
+      email: 'alex@example.com',
+      phone: '+10000000000',
+      phoneNormalized: '10000000000',
+    };
     clientsRepository.findOne
+      .mockResolvedValueOnce(null)
       .mockResolvedValueOnce(null)
       .mockResolvedValueOnce(client);
 
@@ -132,7 +141,11 @@ describe('ClientResolverService', () => {
   });
 
   it('creates identity for externalUserId', async () => {
-    const client = { id: 'client-by-phone', phone: '+10000000000' };
+    const client = {
+      id: 'client-by-phone',
+      phone: '+10000000000',
+      phoneNormalized: '10000000000',
+    };
     identitiesRepository.findOne.mockResolvedValue(null);
     clientsRepository.findOne.mockResolvedValue(client);
 
@@ -153,7 +166,52 @@ describe('ClientResolverService', () => {
       externalId: 'telegram-user-id',
       username: 'alex',
       phone: '+10000000000',
+      phoneNormalized: '10000000000',
       email: 'alex@example.com',
+    });
+  });
+
+  it('moves existing identity to client matched by normalized phone', async () => {
+    const identityClient = {
+      id: 'client-from-identity',
+      phone: null,
+    };
+    const phoneClient = {
+      id: 'client-by-phone',
+      phone: '1 (000) 000-0000',
+      phoneNormalized: '10000000000',
+    };
+    const identity = {
+      id: 'identity-existing',
+      clientId: 'client-from-identity',
+      channel: Channel.TELEGRAM,
+      externalId: 'telegram-user-id',
+      client: identityClient,
+      phone: null,
+      phoneNormalized: null,
+    };
+
+    identitiesRepository.findOne.mockResolvedValue(identity);
+    clientsRepository.findOne.mockResolvedValue(phoneClient);
+    identitiesRepository.save.mockImplementation((input) =>
+      Promise.resolve(input),
+    );
+
+    const result = await service.resolveFromEvent({
+      ...baseEvent,
+      externalUserId: 'telegram-user-id',
+      client: {
+        phone: '+1 000 000 0000',
+      },
+    });
+
+    expect(result.client).toBe(phoneClient);
+    expect(identitiesRepository.save).toHaveBeenCalledWith({
+      ...identity,
+      clientId: 'client-by-phone',
+      client: phoneClient,
+      phone: '+1 000 000 0000',
+      phoneNormalized: '10000000000',
     });
   });
 

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
+import { ClientsModule } from './clients/clients.module';
 import { HealthModule } from './health/health.module';
 import { SendPulseModule } from './integrations/sendpulse/sendpulse.module';
 import { MakeSyncModule } from './make-sync/make-sync.module';
@@ -15,6 +16,7 @@ import { WebhooksModule } from './webhooks/webhooks.module';
     }),
     TypeormModule,
     HealthModule,
+    ClientsModule,
     RawEventsModule,
     MakeSyncModule,
     SendPulseModule,
