@@ -105,6 +105,7 @@ describe('ClientCardService', () => {
       sendPulse: {
         contactId: 'contact-1',
         botId: 'bot-1',
+        pipeline: null,
         tags: ['lead'],
         variables: {
           Phone: '+10000000000',
@@ -154,6 +155,38 @@ describe('ClientCardService', () => {
     expect(clientsRepository.findOne).toHaveBeenCalledWith({
       where: {
         clientNumber: 1001,
+      },
+    });
+  });
+
+  it('maps known SendPulse bot ids to pipelines', async () => {
+    sendPulseContactsRepository.findOne.mockResolvedValue({
+      contactId: 'contact-2',
+      botId: '69df44b16c587fdcb809deb0',
+      tags: [],
+      variables: {},
+      rawContact: {},
+    });
+
+    await expect(service.getCard('1001')).resolves.toMatchObject({
+      sendPulse: {
+        botId: '69df44b16c587fdcb809deb0',
+        pipeline: 12403487,
+      },
+    });
+
+    sendPulseContactsRepository.findOne.mockResolvedValue({
+      contactId: 'contact-3',
+      botId: '6a3919e3dbfd2064c50e1c36',
+      tags: [],
+      variables: {},
+      rawContact: {},
+    });
+
+    await expect(service.getCard('1001')).resolves.toMatchObject({
+      sendPulse: {
+        botId: '6a3919e3dbfd2064c50e1c36',
+        pipeline: 12403591,
       },
     });
   });

@@ -21,6 +21,7 @@ export interface ClientCard {
   sendPulse?: {
     contactId?: string | null;
     botId?: string | null;
+    pipeline: number | null;
     tags?: unknown[] | null;
     variables?: Record<string, unknown> | null;
     rawContact?: unknown;
@@ -154,6 +155,7 @@ export class ClientCardService {
         ? {
             contactId: sendPulseContact.contactId,
             botId: sendPulseContact.botId,
+            pipeline: this.resolvePipeline(sendPulseContact.botId),
             tags: sendPulseContact.tags,
             variables: sendPulseContact.variables,
             rawContact: sendPulseContact.rawContact,
@@ -206,6 +208,18 @@ export class ClientCardService {
         id: clientRef,
       },
     });
+  }
+
+  private resolvePipeline(botId: string | null | undefined): number | null {
+    if (botId === '69df44b16c587fdcb809deb0') {
+      return 12403487;
+    }
+
+    if (botId === '6a3919e3dbfd2064c50e1c36') {
+      return 12403591;
+    }
+
+    return null;
   }
 
   private getRawContactString(
