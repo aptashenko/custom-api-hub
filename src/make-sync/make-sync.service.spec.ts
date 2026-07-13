@@ -1,3 +1,5 @@
+import { ConfigService } from '@nestjs/config';
+
 import { AggregationService } from '../aggregation/aggregation.service';
 import { MakeService } from '../integrations/make/make.service';
 import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
@@ -14,6 +16,7 @@ describe('MakeSyncService', () => {
     Pick<AggregationService, 'buildPendingPayload'>
   >;
   let makeService: jest.Mocked<Pick<MakeService, 'sendPayload'>>;
+  let configService: jest.Mocked<Pick<ConfigService, 'get'>>;
   let service: MakeSyncService;
 
   beforeEach(() => {
@@ -37,14 +40,19 @@ describe('MakeSyncService', () => {
     makeService = {
       sendPayload: jest.fn().mockResolvedValue(undefined),
     };
+    configService = {
+      get: jest.fn(),
+    };
     service = new MakeSyncService(
       repository as never,
       aggregationService as never,
       makeService as never,
+      configService as never,
     );
   });
 
   afterEach(() => {
+    service.onModuleDestroy();
     jest.useRealTimers();
   });
 
@@ -136,6 +144,46 @@ describe('MakeSyncService', () => {
         error: 'Make is unavailable',
       }),
     );
+  });
+
+  it('auto processes due events outside production', async () => {
+    const event = makeSyncEvent();
+
+    configService.get.mockImplementation((key: string) => {
+      if (key === 'MAKE_SYNC_PROCESS_INTERVAL_MS') {
+        return '1000';
+      }
+
+      return undefined;
+    });
+    repository.find.mockResolvedValue([event]);
+
+    service.onModuleInit();
+    await jest.advanceTimersByTimeAsync(1000);
+
+    expect(makeService.sendPayload).toHaveBeenCalledTimes(1);
+  });
+
+  it('auto processes due events in production', async () => {
+    const event = makeSyncEvent();
+
+    configService.get.mockImplementation((key: string) => {
+      if (key === 'NODE_ENV') {
+        return 'production';
+      }
+
+      if (key === 'MAKE_SYNC_PROCESS_INTERVAL_MS') {
+        return '1000';
+      }
+
+      return undefined;
+    });
+    repository.find.mockResolvedValue([event]);
+
+    service.onModuleInit();
+    await jest.advanceTimersByTimeAsync(1000);
+
+    expect(makeService.sendPayload).toHaveBeenCalledTimes(1);
   });
 
   function makeSyncEvent(

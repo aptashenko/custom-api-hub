@@ -8,7 +8,7 @@ export class MakeService {
   constructor(private readonly configService: ConfigService) {}
 
   async sendPayload(payload: Record<string, unknown>): Promise<void> {
-    if (this.isDevelopmentMode()) {
+    if (!this.isProductionMode()) {
       this.logger.log(`Stubbed Make webhook payload=${JSON.stringify(payload)}`);
       return;
     }
@@ -32,7 +32,7 @@ export class MakeService {
     }
   }
 
-  private isDevelopmentMode(): boolean {
-    return this.configService.get<string>('NODE_ENV') !== 'production';
+  private isProductionMode(): boolean {
+    return this.configService.get<string>('NODE_ENV') === 'production';
   }
 }

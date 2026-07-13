@@ -380,7 +380,10 @@ payload.debounceUntil
 
 ## 12. Как Pending Event Отправляется В Make
 
-Для обработки pending-событий вызывается:
+Pending-события обрабатываются автоматически. Worker каждые 10 секунд вызывает
+обработку pending events.
+
+Также обработку можно запустить вручную:
 
 ```text
 POST /make-sync/process-pending
@@ -396,17 +399,21 @@ payload.debounceUntil <= now
 
 Потом он собирает финальный payload только по `messageIds` этого события.
 
-В dev-режиме Make не вызывается. Payload просто печатается в лог:
+Если `NODE_ENV` не равен `production`, worker всё равно обрабатывает pending
+events, но Make не вызывается. Payload печатается в лог:
 
 ```text
 Stubbed Make webhook payload=...
 ```
 
-В production-режиме payload отправляется в:
+Если `NODE_ENV=production`, payload отправляется в:
 
 ```text
 MAKE_WEBHOOK_URL
 ```
+
+Если `NODE_ENV=production`, но `MAKE_WEBHOOK_URL` не настроен, event получает
+статус `FAILED`.
 
 ## 13. Что Отправляется В Make
 

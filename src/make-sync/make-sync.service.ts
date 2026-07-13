@@ -1,4 +1,11 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  NotFoundException,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IsNull, Raw, Repository } from 'typeorm';
 
@@ -13,6 +20,8 @@ export interface MakeSyncResult {
   failed: number;
 }
 
+const DEFAULT_AUTO_PROCESS_INTERVAL_MS = 10_000;
+
 function quoteRawAlias(alias: string): string {
   return alias
     .split('.')
@@ -25,15 +34,37 @@ function quoteRawAlias(alias: string): string {
 }
 
 @Injectable()
-export class MakeSyncService {
+export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(MakeSyncService.name);
+  private autoProcessTimer?: NodeJS.Timeout;
+  private autoProcessRunning = false;
 
   constructor(
     @InjectRepository(MakeSyncEvent)
     private readonly makeSyncEventsRepository: Repository<MakeSyncEvent>,
     private readonly aggregationService: AggregationService,
     private readonly makeService: MakeService,
+    private readonly configService: ConfigService,
   ) {}
+
+  onModuleInit(): void {
+    const intervalMs = this.getAutoProcessIntervalMs();
+
+    this.autoProcessTimer = setInterval(() => {
+      void this.processPendingSafely();
+    }, intervalMs);
+
+    this.logger.log(
+      `Started make sync auto processor intervalMs=${intervalMs}`,
+    );
+  }
+
+  onModuleDestroy(): void {
+    if (this.autoProcessTimer) {
+      clearInterval(this.autoProcessTimer);
+      this.autoProcessTimer = undefined;
+    }
+  }
 
   async processPending(): Promise<MakeSyncResult> {
     const now = new Date();
@@ -102,6 +133,42 @@ export class MakeSyncService {
     }
 
     return this.processEvent(event, now);
+  }
+
+  private async processPendingSafely(): Promise<void> {
+    if (this.autoProcessRunning) {
+      return;
+    }
+
+    this.autoProcessRunning = true;
+
+    try {
+      const result = await this.processPending();
+
+      if (result.processed > 0) {
+        this.logger.log(
+          `Auto processed make sync events processed=${result.processed} sent=${result.sent} failed=${result.failed}`,
+        );
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+
+      this.logger.error(`Auto make sync processing failed error=${message}`);
+    } finally {
+      this.autoProcessRunning = false;
+    }
+  }
+
+  private getAutoProcessIntervalMs(): number {
+    const configuredInterval = Number(
+      this.configService.get<string>('MAKE_SYNC_PROCESS_INTERVAL_MS'),
+    );
+
+    if (Number.isFinite(configuredInterval) && configuredInterval > 0) {
+      return configuredInterval;
+    }
+
+    return DEFAULT_AUTO_PROCESS_INTERVAL_MS;
   }
 
   private async processEvent(
