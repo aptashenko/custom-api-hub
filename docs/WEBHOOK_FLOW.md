@@ -433,6 +433,7 @@ MAKE_WEBHOOK_URL
     "sendPulse": {
       "contactId": "contact-id",
       "botId": "bot-id",
+      "botName": "Main Telegram Bot",
       "pipeline": null,
       "tags": ["lead"],
       "variables": {}
@@ -464,10 +465,14 @@ MAKE_WEBHOOK_URL
     ]
   },
   "channel": "TELEGRAM",
+  "botId": "bot-id",
+  "botName": "Main Telegram Bot",
   "messages": [
     {
       "id": "7cb37e60-8286-4cba-94d3-be56ae26cf3d",
       "text": "helloooo",
+      "direction": "IN",
+      "sender": "CLIENT",
       "createdAt": "2026-07-04T21:05:00.692Z"
     }
   ],

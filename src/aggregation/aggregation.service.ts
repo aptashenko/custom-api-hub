@@ -7,7 +7,11 @@ import {
   ClientCardService,
 } from '../clients/client-card.service';
 import { Client } from '../typeorm/entities/client.entity';
-import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
+import {
+  Channel,
+  MakeSyncStatus,
+  MessageDirection,
+} from '../typeorm/entities/enums';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
 import { Message } from '../typeorm/entities/message.entity';
 
@@ -116,13 +120,21 @@ export class AggregationService {
       },
       clientCard: this.toMakeClientCard(clientCard),
       channel: params.channel,
+      botId: clientCard.sendPulse?.botId ?? null,
+      botName: clientCard.sendPulse?.botName ?? null,
       messages: messages.map((message) => ({
         id: message.id,
         text: message.text,
+        direction: message.direction,
+        sender: this.resolveMessageSender(message.direction),
         createdAt: message.createdAt.toISOString(),
       })),
       lastMessageAt: lastMessage?.createdAt.toISOString() ?? null,
     };
+  }
+
+  private resolveMessageSender(direction: MessageDirection): 'CLIENT' | 'BOT' {
+    return direction === MessageDirection.OUT ? 'BOT' : 'CLIENT';
   }
 
   private findPendingEvent(params: {

@@ -1,4 +1,8 @@
-import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
+import {
+  Channel,
+  MakeSyncStatus,
+  MessageDirection,
+} from '../typeorm/entities/enums';
 import { AggregationService } from './aggregation.service';
 
 describe('AggregationService', () => {
@@ -56,6 +60,7 @@ describe('AggregationService', () => {
         sendPulse: {
           contactId: 'contact-1',
           botId: 'bot-1',
+          botName: 'Main Telegram Bot',
           pipeline: null,
           tags: ['lead'],
           variables: {
@@ -154,11 +159,13 @@ describe('AggregationService', () => {
       {
         id: 'message-1',
         text: 'First',
+        direction: MessageDirection.IN,
         createdAt: firstDate,
       },
       {
         id: 'message-2',
         text: 'Second',
+        direction: MessageDirection.OUT,
         createdAt: secondDate,
       },
     ]);
@@ -189,6 +196,7 @@ describe('AggregationService', () => {
         sendPulse: {
           contactId: 'contact-1',
           botId: 'bot-1',
+          botName: 'Main Telegram Bot',
           pipeline: null,
           tags: ['lead'],
           variables: {
@@ -213,15 +221,21 @@ describe('AggregationService', () => {
         recentMessages: [],
       },
       channel: Channel.TELEGRAM,
+      botId: 'bot-1',
+      botName: 'Main Telegram Bot',
       messages: [
         {
           id: 'message-1',
           text: 'First',
+          direction: MessageDirection.IN,
+          sender: 'CLIENT',
           createdAt: '2026-07-03T11:58:00.000Z',
         },
         {
           id: 'message-2',
           text: 'Second',
+          direction: MessageDirection.OUT,
+          sender: 'BOT',
           createdAt: '2026-07-03T11:59:00.000Z',
         },
       ],

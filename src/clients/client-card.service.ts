@@ -21,6 +21,7 @@ export interface ClientCard {
   sendPulse?: {
     contactId?: string | null;
     botId?: string | null;
+    botName?: string | null;
     pipeline: number | null;
     tags?: unknown[] | null;
     variables?: Record<string, unknown> | null;
@@ -155,6 +156,7 @@ export class ClientCardService {
         ? {
             contactId: sendPulseContact.contactId,
             botId: sendPulseContact.botId,
+            botName: this.resolveBotName(sendPulseContact),
             pipeline: this.resolvePipeline(sendPulseContact.botId),
             tags: sendPulseContact.tags,
             variables: sendPulseContact.variables,
@@ -222,6 +224,20 @@ export class ClientCardService {
     return null;
   }
 
+  private resolveBotName(
+    sendPulseContact: SendPulseContact | null,
+  ): string | null {
+    if (!this.isRecord(sendPulseContact?.rawProfile)) {
+      return null;
+    }
+
+    const bot = this.getRecord(sendPulseContact.rawProfile.bot);
+
+    return (
+      this.getString(bot?.name) ?? this.getString(bot?.username) ?? null
+    );
+  }
+
   private getRawContactString(
     sendPulseContact: SendPulseContact | null,
     key: string,
@@ -231,6 +247,10 @@ export class ClientCardService {
     }
 
     return this.getString(sendPulseContact.rawContact[key]);
+  }
+
+  private getRecord(value: unknown): Record<string, unknown> | undefined {
+    return this.isRecord(value) ? value : undefined;
   }
 
   private getVariableString(

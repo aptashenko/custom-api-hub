@@ -53,6 +53,12 @@ describe('ClientCardService', () => {
           full_name: 'Alex',
           profile_pic: 'https://example.com/avatar.jpg',
         },
+        rawProfile: {
+          bot: {
+            id: 'bot-1',
+            name: 'Main Telegram Bot',
+          },
+        },
       }),
     };
     messagesRepository = {
@@ -105,6 +111,7 @@ describe('ClientCardService', () => {
       sendPulse: {
         contactId: 'contact-1',
         botId: 'bot-1',
+        botName: 'Main Telegram Bot',
         pipeline: null,
         tags: ['lead'],
         variables: {
@@ -166,6 +173,7 @@ describe('ClientCardService', () => {
       tags: [],
       variables: {},
       rawContact: {},
+      rawProfile: {},
     });
 
     await expect(service.getCard('1001')).resolves.toMatchObject({
@@ -181,6 +189,7 @@ describe('ClientCardService', () => {
       tags: [],
       variables: {},
       rawContact: {},
+      rawProfile: {},
     });
 
     await expect(service.getCard('1001')).resolves.toMatchObject({
