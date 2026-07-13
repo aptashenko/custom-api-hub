@@ -420,6 +420,49 @@ MAKE_WEBHOOK_URL
     "phone": null,
     "email": null
   },
+  "clientCard": {
+    "id": "edf4849d-7023-4cc1-b10c-aa6337b5c34e",
+    "clientNumber": 1001,
+    "profile": {
+      "name": "Ptashenko Artem",
+      "phone": null,
+      "email": null,
+      "username": "ptashenko",
+      "avatarUrl": null
+    },
+    "sendPulse": {
+      "contactId": "contact-id",
+      "botId": "bot-id",
+      "pipeline": null,
+      "tags": ["lead"],
+      "variables": {}
+    },
+    "activity": {
+      "messageCount": 1,
+      "lastMessageText": "helloooo",
+      "lastMessageAt": "2026-07-04T21:05:00.692Z"
+    },
+    "identities": [
+      {
+        "channel": "TELEGRAM",
+        "externalId": "telegram-user-id",
+        "username": "ptashenko",
+        "phone": null,
+        "email": null
+      }
+    ],
+    "leadSources": [],
+    "recentMessages": [
+      {
+        "id": "7cb37e60-8286-4cba-94d3-be56ae26cf3d",
+        "channel": "TELEGRAM",
+        "direction": "IN",
+        "text": "helloooo",
+        "externalMessageId": "external-message-id",
+        "createdAt": "2026-07-04T21:05:00.692Z"
+      }
+    ]
+  },
   "channel": "TELEGRAM",
   "messages": [
     {
@@ -431,6 +474,9 @@ MAKE_WEBHOOK_URL
   "lastMessageAt": "2026-07-04T21:05:00.692Z"
 }
 ```
+
+`clientCard.sendPulse.rawContact` намеренно не отправляется в Make: это сырой
+объект SendPulse, который может быть большим и нестабильным.
 
 Если отправка успешна:
 
@@ -521,4 +567,3 @@ FROM raw_events
 ORDER BY "createdAt" DESC
 LIMIT 1;
 ```
-

@@ -13,6 +13,9 @@ describe('AggregationService', () => {
   let clientsRepository: {
     findOne: jest.Mock;
   };
+  let clientCardService: {
+    getCard: jest.Mock;
+  };
   let service: AggregationService;
 
   beforeEach(() => {
@@ -39,10 +42,52 @@ describe('AggregationService', () => {
         email: 'alex@example.com',
       }),
     };
+    clientCardService = {
+      getCard: jest.fn().mockResolvedValue({
+        id: 'client-id',
+        clientNumber: 1001,
+        profile: {
+          name: 'Alex',
+          phone: '+10000000000',
+          email: 'alex@example.com',
+          username: 'alex_user',
+          avatarUrl: null,
+        },
+        sendPulse: {
+          contactId: 'contact-1',
+          botId: 'bot-1',
+          pipeline: null,
+          tags: ['lead'],
+          variables: {
+            Phone: '+10000000000',
+          },
+          rawContact: {
+            full_name: 'Alex',
+          },
+        },
+        activity: {
+          messageCount: 2,
+          lastMessageText: 'Second',
+          lastMessageAt: '2026-07-03T11:59:00.000Z',
+        },
+        identities: [
+          {
+            channel: Channel.TELEGRAM,
+            externalId: 'telegram-user-id',
+            username: 'alex_user',
+            phone: '+10000000000',
+            email: null,
+          },
+        ],
+        leadSources: [],
+        recentMessages: [],
+      }),
+    };
     service = new AggregationService(
       makeSyncEventsRepository as never,
       messagesRepository as never,
       clientsRepository as never,
+      clientCardService as never,
     );
   });
 
@@ -131,6 +176,42 @@ describe('AggregationService', () => {
         phone: '+10000000000',
         email: 'alex@example.com',
       },
+      clientCard: {
+        id: 'client-id',
+        clientNumber: 1001,
+        profile: {
+          name: 'Alex',
+          phone: '+10000000000',
+          email: 'alex@example.com',
+          username: 'alex_user',
+          avatarUrl: null,
+        },
+        sendPulse: {
+          contactId: 'contact-1',
+          botId: 'bot-1',
+          pipeline: null,
+          tags: ['lead'],
+          variables: {
+            Phone: '+10000000000',
+          },
+        },
+        activity: {
+          messageCount: 2,
+          lastMessageText: 'Second',
+          lastMessageAt: '2026-07-03T11:59:00.000Z',
+        },
+        identities: [
+          {
+            channel: Channel.TELEGRAM,
+            externalId: 'telegram-user-id',
+            username: 'alex_user',
+            phone: '+10000000000',
+            email: null,
+          },
+        ],
+        leadSources: [],
+        recentMessages: [],
+      },
       channel: Channel.TELEGRAM,
       messages: [
         {
@@ -146,6 +227,7 @@ describe('AggregationService', () => {
       ],
       lastMessageAt: '2026-07-03T11:59:00.000Z',
     });
+    expect(clientCardService.getCard).toHaveBeenCalledWith('client-id');
     expect(messagesRepository.find).toHaveBeenCalledWith({
       where: {
         id: expect.any(Object),

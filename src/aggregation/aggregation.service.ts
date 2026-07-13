@@ -2,6 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, IsNull, Raw, Repository } from 'typeorm';
 
+import {
+  ClientCard,
+  ClientCardService,
+} from '../clients/client-card.service';
 import { Client } from '../typeorm/entities/client.entity';
 import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
@@ -30,6 +34,7 @@ export class AggregationService {
     private readonly messagesRepository: Repository<Message>,
     @InjectRepository(Client)
     private readonly clientsRepository: Repository<Client>,
+    private readonly clientCardService: ClientCardService,
   ) {}
 
   async scheduleFromMessage(params: {
@@ -82,7 +87,7 @@ export class AggregationService {
     channel: Channel;
     messageIds?: string[];
   }): Promise<Record<string, unknown>> {
-    const [client, messages] = await Promise.all([
+    const [client, messages, clientCard] = await Promise.all([
       this.clientsRepository.findOne({
         where: {
           id: params.clientId,
@@ -98,6 +103,7 @@ export class AggregationService {
           createdAt: 'ASC',
         },
       }),
+      this.clientCardService.getCard(params.clientId),
     ]);
     const lastMessage = messages[messages.length - 1];
 
@@ -108,6 +114,7 @@ export class AggregationService {
         phone: client?.phone ?? null,
         email: client?.email ?? null,
       },
+      clientCard: this.toMakeClientCard(clientCard),
       channel: params.channel,
       messages: messages.map((message) => ({
         id: message.id,
@@ -156,5 +163,20 @@ export class AggregationService {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
+  }
+
+  private toMakeClientCard(card: ClientCard) {
+    const { sendPulse, ...clientCard } = card;
+
+    if (!sendPulse) {
+      return clientCard;
+    }
+
+    const { rawContact: _rawContact, ...cleanSendPulse } = sendPulse;
+
+    return {
+      ...clientCard,
+      sendPulse: cleanSendPulse,
+    };
   }
 }
