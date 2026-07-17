@@ -2,16 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ClientsModule } from '../clients/clients.module';
-import { Client } from '../typeorm/entities/client.entity';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
-import { Message } from '../typeorm/entities/message.entity';
 import { AggregationService } from './aggregation.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([MakeSyncEvent, Message, Client]),
-    ClientsModule,
-  ],
+  imports: [TypeOrmModule.forFeature([MakeSyncEvent]), ClientsModule],
   providers: [AggregationService],
   exports: [AggregationService],
 })

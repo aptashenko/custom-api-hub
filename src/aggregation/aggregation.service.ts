@@ -1,19 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, IsNull, Raw, Repository } from 'typeorm';
+import { IsNull, Raw, Repository } from 'typeorm';
 
-import {
-  ClientCard,
-  ClientCardService,
-} from '../clients/client-card.service';
-import { Client } from '../typeorm/entities/client.entity';
-import {
-  Channel,
-  MakeSyncStatus,
-  MessageDirection,
-} from '../typeorm/entities/enums';
+import { ClientMakePayloadService } from '../clients/client-make-payload.service';
+import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
-import { Message } from '../typeorm/entities/message.entity';
 
 const DEBOUNCE_WINDOW_MS = 60_000;
 function quoteRawAlias(alias: string): string {
@@ -34,11 +25,7 @@ export class AggregationService {
   constructor(
     @InjectRepository(MakeSyncEvent)
     private readonly makeSyncEventsRepository: Repository<MakeSyncEvent>,
-    @InjectRepository(Message)
-    private readonly messagesRepository: Repository<Message>,
-    @InjectRepository(Client)
-    private readonly clientsRepository: Repository<Client>,
-    private readonly clientCardService: ClientCardService,
+    private readonly clientMakePayloadService: ClientMakePayloadService,
   ) {}
 
   async scheduleFromMessage(params: {
@@ -91,50 +78,7 @@ export class AggregationService {
     channel: Channel;
     messageIds?: string[];
   }): Promise<Record<string, unknown>> {
-    const [client, messages, clientCard] = await Promise.all([
-      this.clientsRepository.findOne({
-        where: {
-          id: params.clientId,
-        },
-      }),
-      this.messagesRepository.find({
-        where: {
-          id: In(params.messageIds ?? []),
-          clientId: params.clientId,
-          channel: params.channel,
-        },
-        order: {
-          createdAt: 'ASC',
-        },
-      }),
-      this.clientCardService.getCard(params.clientId),
-    ]);
-    const lastMessage = messages[messages.length - 1];
-
-    return {
-      client: {
-        id: params.clientId,
-        name: client?.name ?? null,
-        phone: client?.phone ?? null,
-        email: client?.email ?? null,
-      },
-      clientCard: this.toMakeClientCard(clientCard),
-      channel: params.channel,
-      botId: clientCard.sendPulse?.botId ?? null,
-      botName: clientCard.sendPulse?.botName ?? null,
-      messages: messages.map((message) => ({
-        id: message.id,
-        text: message.text,
-        direction: message.direction,
-        sender: this.resolveMessageSender(message.direction),
-        createdAt: message.createdAt.toISOString(),
-      })),
-      lastMessageAt: lastMessage?.createdAt.toISOString() ?? null,
-    };
-  }
-
-  private resolveMessageSender(direction: MessageDirection): 'CLIENT' | 'BOT' {
-    return direction === MessageDirection.OUT ? 'BOT' : 'CLIENT';
+    return this.clientMakePayloadService.build(params);
   }
 
   private findPendingEvent(params: {
@@ -175,20 +119,5 @@ export class AggregationService {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
-  }
-
-  private toMakeClientCard(card: ClientCard) {
-    const { sendPulse, ...clientCard } = card;
-
-    if (!sendPulse) {
-      return clientCard;
-    }
-
-    const { rawContact: _rawContact, ...cleanSendPulse } = sendPulse;
-
-    return {
-      ...clientCard,
-      sendPulse: cleanSendPulse,
-    };
   }
 }

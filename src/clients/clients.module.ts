@@ -7,6 +7,7 @@ import { LeadSource } from '../typeorm/entities/lead-source.entity';
 import { Message } from '../typeorm/entities/message.entity';
 import { SendPulseContact } from '../typeorm/entities/sendpulse-contact.entity';
 import { ClientCardService } from './client-card.service';
+import { ClientMakePayloadService } from './client-make-payload.service';
 import { ClientResolverService } from './client-resolver.service';
 import { ClientsController } from './clients.controller';
 
@@ -21,7 +22,15 @@ import { ClientsController } from './clients.controller';
     ]),
   ],
   controllers: [ClientsController],
-  providers: [ClientResolverService, ClientCardService],
-  exports: [ClientResolverService, ClientCardService],
+  providers: [
+    ClientResolverService,
+    ClientCardService,
+    ClientMakePayloadService,
+  ],
+  exports: [
+    ClientResolverService,
+    ClientCardService,
+    ClientMakePayloadService,
+  ],
 })
 export class ClientsModule {}
