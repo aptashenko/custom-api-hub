@@ -64,6 +64,56 @@ describe('SendPulseNormalizer', () => {
     expect(normalized.message?.direction).toBe(MessageDirection.IN);
   });
 
+  it('marks outgoing SendPulse messages as OUT', () => {
+    const normalized = normalizer.normalize({
+      title: 'outgoing_message',
+      info: {
+        message: {
+          channel_data: {
+            message: {
+              text: 'Manager reply',
+            },
+          },
+        },
+      },
+    });
+
+    expect(normalized.message).toEqual({
+      text: 'Manager reply',
+      direction: MessageDirection.OUT,
+    });
+  });
+
+  it('does not duplicate last incoming message from outgoing SendPulse events', () => {
+    const normalized = normalizer.normalize({
+      title: 'outgoing_message',
+      info: {
+        message: {
+          channel_data: {
+            message_id: 17123,
+            message: {
+              photo: 'chatbots/flows/photo.png',
+            },
+          },
+        },
+      },
+      contact: {
+        telegram_id: '844417616',
+        last_message: 'тест',
+        last_message_data: {
+          message_id: 17122,
+          message: {
+            text: 'тест',
+          },
+        },
+      },
+    });
+
+    expect(normalized.eventType).toBe('outgoing_message');
+    expect(normalized.externalMessageId).toBe('17123');
+    expect(normalized.message).toBeUndefined();
+  });
+
   it('detects telegram channel', () => {
     const normalized = normalizer.normalize({
       channel: 'Telegram Bot',

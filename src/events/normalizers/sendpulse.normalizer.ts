@@ -14,6 +14,7 @@ export class SendPulseNormalizer {
       this.getString(eventPayload, ['action']) ??
       this.getString(eventPayload, ['title']) ??
       'unknown';
+    const isOutgoingEvent = eventType.toLowerCase() === 'outgoing_message';
 
     const externalUserId =
       this.getString(eventPayload, ['contact', 'telegram_id']) ??
@@ -39,7 +40,7 @@ export class SendPulseNormalizer {
         'message_id',
       ]);
 
-    const messageText =
+    const directMessageText =
       this.getString(eventPayload, ['message', 'text']) ??
       this.getString(eventPayload, [
         'info',
@@ -47,18 +48,24 @@ export class SendPulseNormalizer {
         'channel_data',
         'message',
         'text',
-      ]) ??
-      this.getString(eventPayload, [
-        'contact',
-        'last_message_data',
-        'message',
-        'text',
-      ]) ??
-      this.getString(eventPayload, ['contact', 'last_message']) ??
+      ]);
+    const lastMessageText = isOutgoingEvent
+      ? undefined
+      : this.getString(eventPayload, [
+          'contact',
+          'last_message_data',
+          'message',
+          'text',
+        ]) ??
+        this.getString(eventPayload, ['contact', 'last_message']);
+    const messageText =
+      directMessageText ??
+      lastMessageText ??
       this.getString(eventPayload, ['message']) ??
       this.getString(eventPayload, ['text']);
 
     const direction =
+      isOutgoingEvent ||
       this.getString(eventPayload, ['direction'])?.toLowerCase() === 'out'
         ? MessageDirection.OUT
         : MessageDirection.IN;
@@ -109,8 +116,10 @@ export class SendPulseNormalizer {
 
     return (
       payload.find(
+        (item) => this.getString(item, ['title']) === 'incoming_message',
+      ) ??
+      payload.find(
         (item) =>
-          this.getString(item, ['title']) === 'incoming_message' ||
           this.getString(item, [
             'info',
             'message',
