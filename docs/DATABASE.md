@@ -41,3 +41,7 @@ Raw events are used for debugging and reprocessing.
 Stores events prepared for delivery to Make.
 
 Used for delivery tracking and retry.
+
+## Reporting
+
+Looker Studio access is documented in [LOOKER_STUDIO.md](./LOOKER_STUDIO.md).

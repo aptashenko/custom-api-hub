@@ -7,6 +7,64 @@ DEPLOY_BRANCH="${DEPLOY_BRANCH:-main}"
 PM2_APP="${PM2_APP:-customer-hub-api}"
 HEALTH_URL="${HEALTH_URL:-https://postgresql.deniz.estate/health}"
 
+usage() {
+  cat <<'USAGE'
+Usage:
+  scripts/deploy.sh [branch]
+  scripts/deploy.sh --branch <branch>
+
+Environment overrides:
+  DEPLOY_HOST    Remote SSH host. Default: root@208.116.19.64
+  DEPLOY_PATH    Remote project path. Default: /var/www/customer-hub-api
+  DEPLOY_BRANCH  Branch to deploy. Default: main
+  PM2_APP        PM2 app name. Default: customer-hub-api
+  HEALTH_URL     Health check URL.
+
+Examples:
+  scripts/deploy.sh main
+  scripts/deploy.sh looker-readonly-db-access
+  scripts/deploy.sh --branch release/customer-hub
+USAGE
+}
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -b|--branch)
+      if [ "$#" -lt 2 ]; then
+        echo "Missing value for $1" >&2
+        usage >&2
+        exit 1
+      fi
+      DEPLOY_BRANCH="$2"
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -*)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+    *)
+      if [ "${BRANCH_ARG_SET:-0}" = "1" ]; then
+        echo "Only one branch argument is allowed." >&2
+        usage >&2
+        exit 1
+      fi
+      DEPLOY_BRANCH="$1"
+      BRANCH_ARG_SET=1
+      shift
+      ;;
+  esac
+done
+
+if ! git check-ref-format --branch "$DEPLOY_BRANCH" >/dev/null 2>&1; then
+  echo "Invalid branch name: ${DEPLOY_BRANCH}" >&2
+  exit 1
+fi
+
 SSH_OPTS=(
   -o StrictHostKeyChecking=accept-new
 )
