@@ -1,0 +1,4687 @@
+{
+  "generatedAt": "2026-07-31T14:11:25.894Z",
+  "apiVersion": "v25.0",
+  "adAccountId": "act_905947703389624",
+  "objects": [
+    {
+      "objectName": "AdAccount",
+      "id": "act_905947703389624",
+      "status": "ok",
+      "fields": [
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "account_status",
+          "sdkConstant": "account_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_account_promotable_objects",
+          "sdkConstant": "ad_account_promotable_objects",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с рекламным аккаунтом.",
+          "source": "sdk"
+        },
+        {
+          "name": "age",
+          "sdkConstant": "age",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "agency_client_declaration",
+          "sdkConstant": "agency_client_declaration",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "all_capabilities",
+          "sdkConstant": "all_capabilities",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "amount_spent",
+          "sdkConstant": "amount_spent",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "attribution_spec",
+          "sdkConstant": "attribution_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "balance",
+          "sdkConstant": "balance",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "brand_safety_content_filter_levels",
+          "sdkConstant": "brand_safety_content_filter_levels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business",
+          "sdkConstant": "business",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_city",
+          "sdkConstant": "business_city",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_country_code",
+          "sdkConstant": "business_country_code",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_name",
+          "sdkConstant": "business_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "business_state",
+          "sdkConstant": "business_state",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_street",
+          "sdkConstant": "business_street",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_street2",
+          "sdkConstant": "business_street2",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "business_zip",
+          "sdkConstant": "business_zip",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "can_create_brand_lift_study",
+          "sdkConstant": "can_create_brand_lift_study",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "capabilities",
+          "sdkConstant": "capabilities",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "created_time",
+          "sdkConstant": "created_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время создания.",
+          "source": "sdk"
+        },
+        {
+          "name": "currency",
+          "sdkConstant": "currency",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "custom_audience_info",
+          "sdkConstant": "custom_audience_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "default_dsa_beneficiary",
+          "sdkConstant": "default_dsa_beneficiary",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "default_dsa_payor",
+          "sdkConstant": "default_dsa_payor",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "disable_reason",
+          "sdkConstant": "disable_reason",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "end_advertiser",
+          "sdkConstant": "end_advertiser",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "end_advertiser_name",
+          "sdkConstant": "end_advertiser_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "existing_customers",
+          "sdkConstant": "existing_customers",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "expired_funding_source_details",
+          "sdkConstant": "expired_funding_source_details",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "extended_credit_invoice_group",
+          "sdkConstant": "extended_credit_invoice_group",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "failed_delivery_checks",
+          "sdkConstant": "failed_delivery_checks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "fb_entity",
+          "sdkConstant": "fb_entity",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "funding_source",
+          "sdkConstant": "funding_source",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "funding_source_details",
+          "sdkConstant": "funding_source_details",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "has_migrated_permissions",
+          "sdkConstant": "has_migrated_permissions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "has_page_authorized_adaccount",
+          "sdkConstant": "has_page_authorized_adaccount",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с рекламным аккаунтом.",
+          "source": "sdk"
+        },
+        {
+          "name": "id",
+          "sdkConstant": "id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Уникальный ID объекта в Graph API.",
+          "source": "sdk"
+        },
+        {
+          "name": "io_number",
+          "sdkConstant": "io_number",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_attribution_spec_system_default",
+          "sdkConstant": "is_attribution_spec_system_default",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_ba_skip_delayed_eligible",
+          "sdkConstant": "is_ba_skip_delayed_eligible",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_direct_deals_enabled",
+          "sdkConstant": "is_direct_deals_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_in_3ds_authorization_enabled_market",
+          "sdkConstant": "is_in_3ds_authorization_enabled_market",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_notifications_enabled",
+          "sdkConstant": "is_notifications_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_personal",
+          "sdkConstant": "is_personal",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_prepay_account",
+          "sdkConstant": "is_prepay_account",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с рекламным аккаунтом.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_tax_id_required",
+          "sdkConstant": "is_tax_id_required",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "liable_address",
+          "sdkConstant": "liable_address",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "line_numbers",
+          "sdkConstant": "line_numbers",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_settings",
+          "sdkConstant": "marketing_messages_settings",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "media_agency",
+          "sdkConstant": "media_agency",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "min_campaign_group_spend_cap",
+          "sdkConstant": "min_campaign_group_spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "min_daily_budget",
+          "sdkConstant": "min_daily_budget",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "name",
+          "sdkConstant": "name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "offsite_clo_signal_status",
+          "sdkConstant": "offsite_clo_signal_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "offsite_pixels_tos_accepted",
+          "sdkConstant": "offsite_pixels_tos_accepted",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "opportunity_score",
+          "sdkConstant": "opportunity_score",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "opportunity_score_weight",
+          "sdkConstant": "opportunity_score_weight",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "owner",
+          "sdkConstant": "owner",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "owner_business",
+          "sdkConstant": "owner_business",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "partner",
+          "sdkConstant": "partner",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "rf_spec",
+          "sdkConstant": "rf_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "send_bill_to_address",
+          "sdkConstant": "send_bill_to_address",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "show_checkout_experience",
+          "sdkConstant": "show_checkout_experience",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "sold_to_address",
+          "sdkConstant": "sold_to_address",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "spend_cap",
+          "sdkConstant": "spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "tax_id",
+          "sdkConstant": "tax_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "tax_id_status",
+          "sdkConstant": "tax_id_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "tax_id_type",
+          "sdkConstant": "tax_id_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "timezone_id",
+          "sdkConstant": "timezone_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "timezone_name",
+          "sdkConstant": "timezone_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "timezone_offset_hours_utc",
+          "sdkConstant": "timezone_offset_hours_utc",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "tos_accepted",
+          "sdkConstant": "tos_accepted",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "user_access_expire_time",
+          "sdkConstant": "user_access_expire_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "user_tasks",
+          "sdkConstant": "user_tasks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "user_tos_accepted",
+          "sdkConstant": "user_tos_accepted",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "viewable_business",
+          "sdkConstant": "viewable_business",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    },
+    {
+      "objectName": "Campaign",
+      "id": null,
+      "status": "missing_sample_object",
+      "fields": [
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "adbatch",
+          "sdkConstant": "adbatch",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "adlabels",
+          "sdkConstant": "adlabels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "advantage_state_info",
+          "sdkConstant": "advantage_state_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_strategy",
+          "sdkConstant": "bid_strategy",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "boosted_object_id",
+          "sdkConstant": "boosted_object_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "brand_lift_studies",
+          "sdkConstant": "brand_lift_studies",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_rebalance_flag",
+          "sdkConstant": "budget_rebalance_flag",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_remaining",
+          "sdkConstant": "budget_remaining",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_schedule_specs",
+          "sdkConstant": "budget_schedule_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "buying_type",
+          "sdkConstant": "buying_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_group_active_time",
+          "sdkConstant": "campaign_group_active_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "can_create_brand_lift_study",
+          "sdkConstant": "can_create_brand_lift_study",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "can_use_spend_cap",
+          "sdkConstant": "can_use_spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "configured_status",
+          "sdkConstant": "configured_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "created_time",
+          "sdkConstant": "created_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время создания.",
+          "source": "sdk"
+        },
+        {
+          "name": "daily_budget",
+          "sdkConstant": "daily_budget",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_status",
+          "sdkConstant": "effective_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "execution_options",
+          "sdkConstant": "execution_options",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "frequency_control_specs",
+          "sdkConstant": "frequency_control_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "has_secondary_skadnetwork_reporting",
+          "sdkConstant": "has_secondary_skadnetwork_reporting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "id",
+          "sdkConstant": "id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Уникальный ID объекта в Graph API.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_adset_budget_sharing_enabled",
+          "sdkConstant": "is_adset_budget_sharing_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_budget_schedule_enabled",
+          "sdkConstant": "is_budget_schedule_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_direct_send_campaign",
+          "sdkConstant": "is_direct_send_campaign",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_message_campaign",
+          "sdkConstant": "is_message_campaign",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_meta_moment_maker_enabled",
+          "sdkConstant": "is_meta_moment_maker_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_reels_trending_ads_enabled",
+          "sdkConstant": "is_reels_trending_ads_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_skadnetwork_attribution",
+          "sdkConstant": "is_skadnetwork_attribution",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "issues_info",
+          "sdkConstant": "issues_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "iterative_split_test_configs",
+          "sdkConstant": "iterative_split_test_configs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "last_budget_toggling_time",
+          "sdkConstant": "last_budget_toggling_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "lifetime_budget",
+          "sdkConstant": "lifetime_budget",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "name",
+          "sdkConstant": "name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "objective",
+          "sdkConstant": "objective",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "pacing_type",
+          "sdkConstant": "pacing_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "primary_attribution",
+          "sdkConstant": "primary_attribution",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "promoted_object",
+          "sdkConstant": "promoted_object",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "recommendations",
+          "sdkConstant": "recommendations",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "smart_promotion_type",
+          "sdkConstant": "smart_promotion_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "source_campaign",
+          "sdkConstant": "source_campaign",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_campaign_id",
+          "sdkConstant": "source_campaign_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_recommendation_type",
+          "sdkConstant": "source_recommendation_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "special_ad_categories",
+          "sdkConstant": "special_ad_categories",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "special_ad_category",
+          "sdkConstant": "special_ad_category",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "special_ad_category_country",
+          "sdkConstant": "special_ad_category_country",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "spend_cap",
+          "sdkConstant": "spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "start_time",
+          "sdkConstant": "start_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "status",
+          "sdkConstant": "status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "stop_time",
+          "sdkConstant": "stop_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "topline_id",
+          "sdkConstant": "topline_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "updated_time",
+          "sdkConstant": "updated_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время последнего обновления.",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    },
+    {
+      "objectName": "AdSet",
+      "id": null,
+      "status": "missing_sample_object",
+      "fields": [
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_set_goal",
+          "sdkConstant": "ad_set_goal",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "adlabels",
+          "sdkConstant": "adlabels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_schedule",
+          "sdkConstant": "adset_schedule",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с группой объявлений.",
+          "source": "sdk"
+        },
+        {
+          "name": "asset_feed_id",
+          "sdkConstant": "asset_feed_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "attribution_count_type",
+          "sdkConstant": "attribution_count_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "attribution_spec",
+          "sdkConstant": "attribution_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "automatic_manual_state",
+          "sdkConstant": "automatic_manual_state",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_adjustments",
+          "sdkConstant": "bid_adjustments",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_amount",
+          "sdkConstant": "bid_amount",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_constraints",
+          "sdkConstant": "bid_constraints",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_info",
+          "sdkConstant": "bid_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_strategy",
+          "sdkConstant": "bid_strategy",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "billing_event",
+          "sdkConstant": "billing_event",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "brand_safety_config",
+          "sdkConstant": "brand_safety_config",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_remaining",
+          "sdkConstant": "budget_remaining",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_schedule_specs",
+          "sdkConstant": "budget_schedule_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_source",
+          "sdkConstant": "budget_source",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "budget_split_set_id",
+          "sdkConstant": "budget_split_set_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign",
+          "sdkConstant": "campaign",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_active_time",
+          "sdkConstant": "campaign_active_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_attribution",
+          "sdkConstant": "campaign_attribution",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_id",
+          "sdkConstant": "campaign_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_spec",
+          "sdkConstant": "campaign_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "configured_status",
+          "sdkConstant": "configured_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_bidding_mode",
+          "sdkConstant": "cost_bidding_mode",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "created_time",
+          "sdkConstant": "created_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время создания.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_diversity_label",
+          "sdkConstant": "creative_diversity_label",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_diversity_score",
+          "sdkConstant": "creative_diversity_score",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_sequence",
+          "sdkConstant": "creative_sequence",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_sequence_repetition_pattern",
+          "sdkConstant": "creative_sequence_repetition_pattern",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "daily_budget",
+          "sdkConstant": "daily_budget",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "daily_imps",
+          "sdkConstant": "daily_imps",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "daily_min_spend_target",
+          "sdkConstant": "daily_min_spend_target",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "daily_spend_cap",
+          "sdkConstant": "daily_spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "date_format",
+          "sdkConstant": "date_format",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "destination_type",
+          "sdkConstant": "destination_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "dsa_beneficiary",
+          "sdkConstant": "dsa_beneficiary",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "dsa_payor",
+          "sdkConstant": "dsa_payor",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_status",
+          "sdkConstant": "effective_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "end_time",
+          "sdkConstant": "end_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "execution_options",
+          "sdkConstant": "execution_options",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "existing_customer_budget_percentage",
+          "sdkConstant": "existing_customer_budget_percentage",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "frequency_control_specs",
+          "sdkConstant": "frequency_control_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "full_funnel_exploration_mode",
+          "sdkConstant": "full_funnel_exploration_mode",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "id",
+          "sdkConstant": "id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Уникальный ID объекта в Graph API.",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_user_id",
+          "sdkConstant": "instagram_user_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_ba_skip_delayed_eligible",
+          "sdkConstant": "is_ba_skip_delayed_eligible",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_budget_schedule_enabled",
+          "sdkConstant": "is_budget_schedule_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_dc_follow_optimized",
+          "sdkConstant": "is_dc_follow_optimized",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_dynamic_creative",
+          "sdkConstant": "is_dynamic_creative",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "is_incremental_attribution_enabled",
+          "sdkConstant": "is_incremental_attribution_enabled",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_organic_ad_joint_optimized",
+          "sdkConstant": "is_organic_ad_joint_optimized",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_sac_cfca_terms_certified",
+          "sdkConstant": "is_sac_cfca_terms_certified",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_sequenced_conversion_creation",
+          "sdkConstant": "is_sequenced_conversion_creation",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "issues_info",
+          "sdkConstant": "issues_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "learning_stage_info",
+          "sdkConstant": "learning_stage_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "lifetime_budget",
+          "sdkConstant": "lifetime_budget",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "lifetime_imps",
+          "sdkConstant": "lifetime_imps",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "lifetime_min_spend_target",
+          "sdkConstant": "lifetime_min_spend_target",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "lifetime_spend_cap",
+          "sdkConstant": "lifetime_spend_cap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "line_number",
+          "sdkConstant": "line_number",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "live_video_ad_campaign_config",
+          "sdkConstant": "live_video_ad_campaign_config",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "low_creative_reach",
+          "sdkConstant": "low_creative_reach",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "max_budget_spend_percentage",
+          "sdkConstant": "max_budget_spend_percentage",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "meta_moment_maker_spec",
+          "sdkConstant": "meta_moment_maker_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "min_budget_spend_percentage",
+          "sdkConstant": "min_budget_spend_percentage",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "multi_event_conversion_attribution_window_seconds",
+          "sdkConstant": "multi_event_conversion_attribution_window_seconds",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "multi_optimization_goal_weight",
+          "sdkConstant": "multi_optimization_goal_weight",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "name",
+          "sdkConstant": "name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "optimization_goal",
+          "sdkConstant": "optimization_goal",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "optimization_sub_event",
+          "sdkConstant": "optimization_sub_event",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "pacing_type",
+          "sdkConstant": "pacing_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "placement_soft_opt_out",
+          "sdkConstant": "placement_soft_opt_out",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "promoted_object",
+          "sdkConstant": "promoted_object",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "rb_prediction_id",
+          "sdkConstant": "rb_prediction_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "recommendations",
+          "sdkConstant": "recommendations",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "recurring_budget_semantics",
+          "sdkConstant": "recurring_budget_semantics",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "regional_regulated_categories",
+          "sdkConstant": "regional_regulated_categories",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "regional_regulation_identities",
+          "sdkConstant": "regional_regulation_identities",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "relative_value",
+          "sdkConstant": "relative_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "review_feedback",
+          "sdkConstant": "review_feedback",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "rf_prediction_id",
+          "sdkConstant": "rf_prediction_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_adset",
+          "sdkConstant": "source_adset",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с группой объявлений.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_adset_id",
+          "sdkConstant": "source_adset_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "special_ad_categories",
+          "sdkConstant": "special_ad_categories",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "start_time",
+          "sdkConstant": "start_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "status",
+          "sdkConstant": "status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "targeting",
+          "sdkConstant": "targeting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Настройки аудитории и таргетинга.",
+          "source": "sdk"
+        },
+        {
+          "name": "targeting_optimization_types",
+          "sdkConstant": "targeting_optimization_types",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Настройки аудитории и таргетинга.",
+          "source": "sdk"
+        },
+        {
+          "name": "time_based_ad_rotation_id_blocks",
+          "sdkConstant": "time_based_ad_rotation_id_blocks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "time_based_ad_rotation_intervals",
+          "sdkConstant": "time_based_ad_rotation_intervals",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "time_start",
+          "sdkConstant": "time_start",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "time_stop",
+          "sdkConstant": "time_stop",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "topline_id",
+          "sdkConstant": "topline_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "trending_topics_spec",
+          "sdkConstant": "trending_topics_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "tune_for_category",
+          "sdkConstant": "tune_for_category",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "updated_time",
+          "sdkConstant": "updated_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время последнего обновления.",
+          "source": "sdk"
+        },
+        {
+          "name": "use_new_app_click",
+          "sdkConstant": "use_new_app_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "value_rule_set_id",
+          "sdkConstant": "value_rule_set_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "value_rules_applied",
+          "sdkConstant": "value_rules_applied",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    },
+    {
+      "objectName": "Ad",
+      "id": null,
+      "status": "missing_sample_object",
+      "fields": [
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_active_time",
+          "sdkConstant": "ad_active_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_review_feedback",
+          "sdkConstant": "ad_review_feedback",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_schedule_end_time",
+          "sdkConstant": "ad_schedule_end_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_schedule_start_time",
+          "sdkConstant": "ad_schedule_start_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "adlabels",
+          "sdkConstant": "adlabels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "adset",
+          "sdkConstant": "adset",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с группой объявлений.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_id",
+          "sdkConstant": "adset_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_spec",
+          "sdkConstant": "adset_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с группой объявлений.",
+          "source": "sdk"
+        },
+        {
+          "name": "audience_id",
+          "sdkConstant": "audience_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_amount",
+          "sdkConstant": "bid_amount",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_info",
+          "sdkConstant": "bid_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "bid_type",
+          "sdkConstant": "bid_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign",
+          "sdkConstant": "campaign",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с кампанией.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_id",
+          "sdkConstant": "campaign_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "configured_status",
+          "sdkConstant": "configured_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_domain",
+          "sdkConstant": "conversion_domain",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_specs",
+          "sdkConstant": "conversion_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "created_time",
+          "sdkConstant": "created_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время создания.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative",
+          "sdkConstant": "creative",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_asset_groups_spec",
+          "sdkConstant": "creative_asset_groups_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_automation_spec",
+          "sdkConstant": "creative_automation_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "date_format",
+          "sdkConstant": "date_format",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "demolink_hash",
+          "sdkConstant": "demolink_hash",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "display_sequence",
+          "sdkConstant": "display_sequence",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "draft_adgroup_id",
+          "sdkConstant": "draft_adgroup_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_status",
+          "sdkConstant": "effective_status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "engagement_audience",
+          "sdkConstant": "engagement_audience",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "execution_options",
+          "sdkConstant": "execution_options",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "failed_delivery_checks",
+          "sdkConstant": "failed_delivery_checks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "filename",
+          "sdkConstant": "filename",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "id",
+          "sdkConstant": "id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Уникальный ID объекта в Graph API.",
+          "source": "sdk"
+        },
+        {
+          "name": "include_demolink_hashes",
+          "sdkConstant": "include_demolink_hashes",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "issues_info",
+          "sdkConstant": "issues_info",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "last_updated_by_app_id",
+          "sdkConstant": "last_updated_by_app_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "name",
+          "sdkConstant": "name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "placement",
+          "sdkConstant": "placement",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "preview_shareable_link",
+          "sdkConstant": "preview_shareable_link",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "priority",
+          "sdkConstant": "priority",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "recommendations",
+          "sdkConstant": "recommendations",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_ad",
+          "sdkConstant": "source_ad",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "source_ad_id",
+          "sdkConstant": "source_ad_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "special_ad_categories",
+          "sdkConstant": "special_ad_categories",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "status",
+          "sdkConstant": "status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "targeting",
+          "sdkConstant": "targeting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Настройки аудитории и таргетинга.",
+          "source": "sdk"
+        },
+        {
+          "name": "tracking_and_conversion_with_defaults",
+          "sdkConstant": "tracking_and_conversion_with_defaults",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "tracking_specs",
+          "sdkConstant": "tracking_specs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "updated_time",
+          "sdkConstant": "updated_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время последнего обновления.",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    },
+    {
+      "objectName": "AdCreative",
+      "id": null,
+      "status": "missing_sample_object",
+      "fields": [
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "actor_id",
+          "sdkConstant": "actor_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_disclaimer_spec",
+          "sdkConstant": "ad_disclaimer_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "adlabels",
+          "sdkConstant": "adlabels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "applink_treatment",
+          "sdkConstant": "applink_treatment",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "asset_feed_spec",
+          "sdkConstant": "asset_feed_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "authorization_category",
+          "sdkConstant": "authorization_category",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "auto_update",
+          "sdkConstant": "auto_update",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "body",
+          "sdkConstant": "body",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "branded_content",
+          "sdkConstant": "branded_content",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "branded_content_sponsor_page_id",
+          "sdkConstant": "branded_content_sponsor_page_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "bundle_folder_id",
+          "sdkConstant": "bundle_folder_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "call_to_action",
+          "sdkConstant": "call_to_action",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "call_to_action_type",
+          "sdkConstant": "call_to_action_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "categorization_criteria",
+          "sdkConstant": "categorization_criteria",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "category_media_source",
+          "sdkConstant": "category_media_source",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "collaborative_ads_lsb_image_bank_id",
+          "sdkConstant": "collaborative_ads_lsb_image_bank_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "contextual_multi_ads",
+          "sdkConstant": "contextual_multi_ads",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_sourcing_spec",
+          "sdkConstant": "creative_sourcing_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "degrees_of_freedom_spec",
+          "sdkConstant": "degrees_of_freedom_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "destination_set_id",
+          "sdkConstant": "destination_set_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "destination_spec",
+          "sdkConstant": "destination_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "dynamic_ad_voice",
+          "sdkConstant": "dynamic_ad_voice",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_authorization_category",
+          "sdkConstant": "effective_authorization_category",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_instagram_media_id",
+          "sdkConstant": "effective_instagram_media_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "effective_object_story_id",
+          "sdkConstant": "effective_object_story_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "enable_direct_install",
+          "sdkConstant": "enable_direct_install",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "enable_launch_instant_app",
+          "sdkConstant": "enable_launch_instant_app",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "execution_options",
+          "sdkConstant": "execution_options",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "existing_post_title",
+          "sdkConstant": "existing_post_title",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "facebook_branded_content",
+          "sdkConstant": "facebook_branded_content",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "format_transformation_spec",
+          "sdkConstant": "format_transformation_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "generative_asset_spec",
+          "sdkConstant": "generative_asset_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "id",
+          "sdkConstant": "id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Уникальный ID объекта в Graph API.",
+          "source": "sdk"
+        },
+        {
+          "name": "image_crops",
+          "sdkConstant": "image_crops",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "image_file",
+          "sdkConstant": "image_file",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "image_hash",
+          "sdkConstant": "image_hash",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "image_url",
+          "sdkConstant": "image_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_branded_content",
+          "sdkConstant": "instagram_branded_content",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_permalink_url",
+          "sdkConstant": "instagram_permalink_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_user_id",
+          "sdkConstant": "instagram_user_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "interactive_components_spec",
+          "sdkConstant": "interactive_components_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "is_dco_internal",
+          "sdkConstant": "is_dco_internal",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "link_deep_link_url",
+          "sdkConstant": "link_deep_link_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "link_destination_display_url",
+          "sdkConstant": "link_destination_display_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "link_og_id",
+          "sdkConstant": "link_og_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "link_url",
+          "sdkConstant": "link_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_message_structured_spec",
+          "sdkConstant": "marketing_message_structured_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "media_sourcing_spec",
+          "sdkConstant": "media_sourcing_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "messenger_sponsored_message",
+          "sdkConstant": "messenger_sponsored_message",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "name",
+          "sdkConstant": "name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "object_id",
+          "sdkConstant": "object_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "object_store_url",
+          "sdkConstant": "object_store_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "object_story_id",
+          "sdkConstant": "object_story_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "object_story_spec",
+          "sdkConstant": "object_story_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "object_type",
+          "sdkConstant": "object_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "object_url",
+          "sdkConstant": "object_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "omnichannel_link_spec",
+          "sdkConstant": "omnichannel_link_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "page_welcome_message",
+          "sdkConstant": "page_welcome_message",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "photo_album_source_object_story_id",
+          "sdkConstant": "photo_album_source_object_story_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "place_page_set_id",
+          "sdkConstant": "place_page_set_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "platform_customizations",
+          "sdkConstant": "platform_customizations",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "playable_asset_id",
+          "sdkConstant": "playable_asset_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "portrait_customizations",
+          "sdkConstant": "portrait_customizations",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "product_data",
+          "sdkConstant": "product_data",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "product_set_id",
+          "sdkConstant": "product_set_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "product_suggestion_settings",
+          "sdkConstant": "product_suggestion_settings",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "recommender_settings",
+          "sdkConstant": "recommender_settings",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "regional_regulation_disclaimer_spec",
+          "sdkConstant": "regional_regulation_disclaimer_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "source_facebook_post_id",
+          "sdkConstant": "source_facebook_post_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "source_instagram_media_id",
+          "sdkConstant": "source_instagram_media_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "status",
+          "sdkConstant": "status",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Статус объекта или процесса.",
+          "source": "sdk"
+        },
+        {
+          "name": "template_url",
+          "sdkConstant": "template_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "template_url_spec",
+          "sdkConstant": "template_url_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "thumbnail_id",
+          "sdkConstant": "thumbnail_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "thumbnail_url",
+          "sdkConstant": "thumbnail_url",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "title",
+          "sdkConstant": "title",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "url_tags",
+          "sdkConstant": "url_tags",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "use_page_actor_override",
+          "sdkConstant": "use_page_actor_override",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "video_id",
+          "sdkConstant": "video_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "wamo_whatsapp_identity_spec",
+          "sdkConstant": "wamo_whatsapp_identity_spec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    },
+    {
+      "objectName": "AdsInsights",
+      "id": "act_905947703389624",
+      "status": "sdk_fields_only",
+      "fields": [
+        {
+          "name": "account_currency",
+          "sdkConstant": "account_currency",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Поле связано с рекламным аккаунтом.",
+          "source": "sdk"
+        },
+        {
+          "name": "account_id",
+          "sdkConstant": "account_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "account_name",
+          "sdkConstant": "account_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "action_values",
+          "sdkConstant": "action_values",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "actions",
+          "sdkConstant": "actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_click_actions",
+          "sdkConstant": "ad_click_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_id",
+          "sdkConstant": "ad_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_impression_actions",
+          "sdkConstant": "ad_impression_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "ad_name",
+          "sdkConstant": "ad_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_end",
+          "sdkConstant": "adset_end",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_id",
+          "sdkConstant": "adset_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_name",
+          "sdkConstant": "adset_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "adset_start",
+          "sdkConstant": "adset_start",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "advanced_actions_28d_view",
+          "sdkConstant": "advanced_actions_28d_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "advanced_reach_1d_lookback",
+          "sdkConstant": "advanced_reach_1d_lookback",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "advanced_reach_28d_lookback",
+          "sdkConstant": "advanced_reach_28d_lookback",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "advanced_reach_7d_lookback",
+          "sdkConstant": "advanced_reach_7d_lookback",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "age_targeting",
+          "sdkConstant": "age_targeting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Настройки аудитории и таргетинга.",
+          "source": "sdk"
+        },
+        {
+          "name": "anchor_event_attribution_setting",
+          "sdkConstant": "anchor_event_attribution_setting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "anchor_events_performance_indicator",
+          "sdkConstant": "anchor_events_performance_indicator",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "attribution_setting",
+          "sdkConstant": "attribution_setting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "auction_bid",
+          "sdkConstant": "auction_bid",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "auction_competitiveness",
+          "sdkConstant": "auction_competitiveness",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "auction_max_competitor_bid",
+          "sdkConstant": "auction_max_competitor_bid",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "average_purchases_conversion_value",
+          "sdkConstant": "average_purchases_conversion_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "buying_type",
+          "sdkConstant": "buying_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_id",
+          "sdkConstant": "campaign_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "campaign_name",
+          "sdkConstant": "campaign_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "canvas_avg_view_percent",
+          "sdkConstant": "canvas_avg_view_percent",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "canvas_avg_view_time",
+          "sdkConstant": "canvas_avg_view_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "catalog_segment_actions",
+          "sdkConstant": "catalog_segment_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "catalog_segment_value",
+          "sdkConstant": "catalog_segment_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "catalog_segment_value_mobile_purchase_roas",
+          "sdkConstant": "catalog_segment_value_mobile_purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "catalog_segment_value_omni_purchase_roas",
+          "sdkConstant": "catalog_segment_value_omni_purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "catalog_segment_value_website_purchase_roas",
+          "sdkConstant": "catalog_segment_value_website_purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "clicks",
+          "sdkConstant": "clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_attribution_action",
+          "sdkConstant": "configurable_attribution_action",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_attribution_actionvalue",
+          "sdkConstant": "configurable_attribution_actionvalue",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_audience_overlap_reach",
+          "sdkConstant": "configurable_audience_overlap_reach",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_reachbyfrequency_action",
+          "sdkConstant": "configurable_reachbyfrequency_action",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_reachbyfrequency_converters_count",
+          "sdkConstant": "configurable_reachbyfrequency_converters_count",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_reachbyfrequency_impressions_cost",
+          "sdkConstant": "configurable_reachbyfrequency_impressions_cost",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_reachbyfrequency_impressions_count",
+          "sdkConstant": "configurable_reachbyfrequency_impressions_count",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Количество показов.",
+          "source": "sdk"
+        },
+        {
+          "name": "configurable_reachbyfrequency_reach",
+          "sdkConstant": "configurable_reachbyfrequency_reach",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_lead_rate",
+          "sdkConstant": "conversion_lead_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_leads",
+          "sdkConstant": "conversion_leads",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_rate_ranking",
+          "sdkConstant": "conversion_rate_ranking",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversion_values",
+          "sdkConstant": "conversion_values",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "conversions",
+          "sdkConstant": "conversions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_app_custom_event_fb_mobile_purchase",
+          "sdkConstant": "converted_product_app_custom_event_fb_mobile_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_app_custom_event_fb_mobile_purchase_value",
+          "sdkConstant": "converted_product_app_custom_event_fb_mobile_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_offline_purchase",
+          "sdkConstant": "converted_product_offline_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_offline_purchase_value",
+          "sdkConstant": "converted_product_offline_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_omni_purchase",
+          "sdkConstant": "converted_product_omni_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_omni_purchase_values",
+          "sdkConstant": "converted_product_omni_purchase_values",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_quantity",
+          "sdkConstant": "converted_product_quantity",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_value",
+          "sdkConstant": "converted_product_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_website_pixel_purchase",
+          "sdkConstant": "converted_product_website_pixel_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_product_website_pixel_purchase_value",
+          "sdkConstant": "converted_product_website_pixel_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_app_custom_event_fb_mobile_purchase",
+          "sdkConstant": "converted_promoted_product_app_custom_event_fb_mobile_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_app_custom_event_fb_mobile_purchase_value",
+          "sdkConstant": "converted_promoted_product_app_custom_event_fb_mobile_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_offline_purchase",
+          "sdkConstant": "converted_promoted_product_offline_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_offline_purchase_value",
+          "sdkConstant": "converted_promoted_product_offline_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_omni_purchase",
+          "sdkConstant": "converted_promoted_product_omni_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_omni_purchase_values",
+          "sdkConstant": "converted_promoted_product_omni_purchase_values",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_quantity",
+          "sdkConstant": "converted_promoted_product_quantity",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_value",
+          "sdkConstant": "converted_promoted_product_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_website_pixel_purchase",
+          "sdkConstant": "converted_promoted_product_website_pixel_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "converted_promoted_product_website_pixel_purchase_value",
+          "sdkConstant": "converted_promoted_product_website_pixel_purchase_value",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_15_sec_video_view",
+          "sdkConstant": "cost_per_15_sec_video_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_2_sec_continuous_video_view",
+          "sdkConstant": "cost_per_2_sec_continuous_video_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_6_sec_video_view",
+          "sdkConstant": "cost_per_6_sec_video_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_action_type",
+          "sdkConstant": "cost_per_action_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_ad_click",
+          "sdkConstant": "cost_per_ad_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_conversion",
+          "sdkConstant": "cost_per_conversion",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_conversion_lead",
+          "sdkConstant": "cost_per_conversion_lead",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_dda_countby_convs",
+          "sdkConstant": "cost_per_dda_countby_convs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_estimated_ad_recallers",
+          "sdkConstant": "cost_per_estimated_ad_recallers",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_inline_link_click",
+          "sdkConstant": "cost_per_inline_link_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_inline_post_engagement",
+          "sdkConstant": "cost_per_inline_post_engagement",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_message_delivered",
+          "sdkConstant": "cost_per_message_delivered",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_objective_result",
+          "sdkConstant": "cost_per_objective_result",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_one_thousand_ad_impression",
+          "sdkConstant": "cost_per_one_thousand_ad_impression",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_outbound_click",
+          "sdkConstant": "cost_per_outbound_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_result",
+          "sdkConstant": "cost_per_result",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_thruplay",
+          "sdkConstant": "cost_per_thruplay",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_unique_action_type",
+          "sdkConstant": "cost_per_unique_action_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_unique_click",
+          "sdkConstant": "cost_per_unique_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_unique_conversion",
+          "sdkConstant": "cost_per_unique_conversion",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_unique_inline_link_click",
+          "sdkConstant": "cost_per_unique_inline_link_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cost_per_unique_outbound_click",
+          "sdkConstant": "cost_per_unique_outbound_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cpc",
+          "sdkConstant": "cpc",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cpm",
+          "sdkConstant": "cpm",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "cpp",
+          "sdkConstant": "cpp",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "created_time",
+          "sdkConstant": "created_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время создания.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_diversity_data",
+          "sdkConstant": "creative_diversity_data",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_diversity_label",
+          "sdkConstant": "creative_diversity_label",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_diversity_score",
+          "sdkConstant": "creative_diversity_score",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_fatigue_summary",
+          "sdkConstant": "creative_fatigue_summary",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_fatigued_ads",
+          "sdkConstant": "creative_fatigued_ads",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "creative_media_type",
+          "sdkConstant": "creative_media_type",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "ctr",
+          "sdkConstant": "ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "date_start",
+          "sdkConstant": "date_start",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "date_stop",
+          "sdkConstant": "date_stop",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "dda_countby_convs",
+          "sdkConstant": "dda_countby_convs",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "dda_results",
+          "sdkConstant": "dda_results",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "engagement_rate_ranking",
+          "sdkConstant": "engagement_rate_ranking",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recall_rate",
+          "sdkConstant": "estimated_ad_recall_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recall_rate_lower_bound",
+          "sdkConstant": "estimated_ad_recall_rate_lower_bound",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recall_rate_upper_bound",
+          "sdkConstant": "estimated_ad_recall_rate_upper_bound",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recallers",
+          "sdkConstant": "estimated_ad_recallers",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recallers_lower_bound",
+          "sdkConstant": "estimated_ad_recallers_lower_bound",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "estimated_ad_recallers_upper_bound",
+          "sdkConstant": "estimated_ad_recallers_upper_bound",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "frequency",
+          "sdkConstant": "frequency",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "full_view_impressions",
+          "sdkConstant": "full_view_impressions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Количество показов.",
+          "source": "sdk"
+        },
+        {
+          "name": "full_view_reach",
+          "sdkConstant": "full_view_reach",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "gender_targeting",
+          "sdkConstant": "gender_targeting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "impressions",
+          "sdkConstant": "impressions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Количество показов.",
+          "source": "sdk"
+        },
+        {
+          "name": "inline_link_click_ctr",
+          "sdkConstant": "inline_link_click_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "inline_link_clicks",
+          "sdkConstant": "inline_link_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "inline_post_engagement",
+          "sdkConstant": "inline_post_engagement",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_profile_visits",
+          "sdkConstant": "instagram_profile_visits",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "instagram_upcoming_event_reminders_set",
+          "sdkConstant": "instagram_upcoming_event_reminders_set",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "instant_experience_clicks_to_open",
+          "sdkConstant": "instant_experience_clicks_to_open",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "instant_experience_clicks_to_start",
+          "sdkConstant": "instant_experience_clicks_to_start",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Начало периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "instant_experience_outbound_clicks",
+          "sdkConstant": "instant_experience_outbound_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "interactive_component_tap",
+          "sdkConstant": "interactive_component_tap",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "labels",
+          "sdkConstant": "labels",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "landing_page_view_actions_per_link_click",
+          "sdkConstant": "landing_page_view_actions_per_link_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "landing_page_view_per_link_click",
+          "sdkConstant": "landing_page_view_per_link_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "landing_page_view_per_purchase_rate",
+          "sdkConstant": "landing_page_view_per_purchase_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "link_clicks_per_results",
+          "sdkConstant": "link_clicks_per_results",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "location",
+          "sdkConstant": "location",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_click_rate_benchmark",
+          "sdkConstant": "marketing_messages_click_rate_benchmark",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_cost_per_delivered",
+          "sdkConstant": "marketing_messages_cost_per_delivered",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_cost_per_link_btn_click",
+          "sdkConstant": "marketing_messages_cost_per_link_btn_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_delivered",
+          "sdkConstant": "marketing_messages_delivered",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_delivery_rate",
+          "sdkConstant": "marketing_messages_delivery_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_link_btn_click",
+          "sdkConstant": "marketing_messages_link_btn_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_link_btn_click_rate",
+          "sdkConstant": "marketing_messages_link_btn_click_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_media_view_rate",
+          "sdkConstant": "marketing_messages_media_view_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_phone_call_btn_click_rate",
+          "sdkConstant": "marketing_messages_phone_call_btn_click_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_quick_reply_btn_click",
+          "sdkConstant": "marketing_messages_quick_reply_btn_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_quick_reply_btn_click_rate",
+          "sdkConstant": "marketing_messages_quick_reply_btn_click_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_read",
+          "sdkConstant": "marketing_messages_read",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_read_rate",
+          "sdkConstant": "marketing_messages_read_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_read_rate_benchmark",
+          "sdkConstant": "marketing_messages_read_rate_benchmark",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_sent",
+          "sdkConstant": "marketing_messages_sent",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_spend",
+          "sdkConstant": "marketing_messages_spend",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_spend_currency",
+          "sdkConstant": "marketing_messages_spend_currency",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_website_add_to_cart",
+          "sdkConstant": "marketing_messages_website_add_to_cart",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_website_initiate_checkout",
+          "sdkConstant": "marketing_messages_website_initiate_checkout",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_website_purchase",
+          "sdkConstant": "marketing_messages_website_purchase",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "marketing_messages_website_purchase_values",
+          "sdkConstant": "marketing_messages_website_purchase_values",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "messages_delivered",
+          "sdkConstant": "messages_delivered",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "messages_delivered_ctr",
+          "sdkConstant": "messages_delivered_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "mobile_app_purchase_roas",
+          "sdkConstant": "mobile_app_purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "multi_event_conversion_attribution_setting",
+          "sdkConstant": "multi_event_conversion_attribution_setting",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "objective",
+          "sdkConstant": "objective",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "objective_result_rate",
+          "sdkConstant": "objective_result_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "objective_results",
+          "sdkConstant": "objective_results",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "onsite_conversion_messaging_detected_purchase_deduped",
+          "sdkConstant": "onsite_conversion_messaging_detected_purchase_deduped",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "opportunity_score_l4",
+          "sdkConstant": "opportunity_score_l4",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "optimization_goal",
+          "sdkConstant": "optimization_goal",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "outbound_clicks",
+          "sdkConstant": "outbound_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "outbound_clicks_ctr",
+          "sdkConstant": "outbound_clicks_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "place_page_name",
+          "sdkConstant": "place_page_name",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Название связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "product_group_retailer_id",
+          "sdkConstant": "product_group_retailer_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "product_retailer_id",
+          "sdkConstant": "product_retailer_id",
+          "type": "",
+          "description": "",
+          "inferredDescription": "ID связанного объекта.",
+          "source": "sdk"
+        },
+        {
+          "name": "product_views",
+          "sdkConstant": "product_views",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "purchase_per_landing_page_view",
+          "sdkConstant": "purchase_per_landing_page_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "purchase_roas",
+          "sdkConstant": "purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "purchases_per_link_click",
+          "sdkConstant": "purchases_per_link_click",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "qualifying_question_qualify_answer_rate",
+          "sdkConstant": "qualifying_question_qualify_answer_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "quality_ranking",
+          "sdkConstant": "quality_ranking",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "reach",
+          "sdkConstant": "reach",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Охват уникальных пользователей.",
+          "source": "sdk"
+        },
+        {
+          "name": "read_rate",
+          "sdkConstant": "read_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "result_rate",
+          "sdkConstant": "result_rate",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "result_values_performance_indicator",
+          "sdkConstant": "result_values_performance_indicator",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "results",
+          "sdkConstant": "results",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "shops_assisted_purchases",
+          "sdkConstant": "shops_assisted_purchases",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "social_spend",
+          "sdkConstant": "social_spend",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "spend",
+          "sdkConstant": "spend",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Конец периода, расписания или действия.",
+          "source": "sdk"
+        },
+        {
+          "name": "total_card_view",
+          "sdkConstant": "total_card_view",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "total_postbacks",
+          "sdkConstant": "total_postbacks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "total_postbacks_detailed",
+          "sdkConstant": "total_postbacks_detailed",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "total_postbacks_detailed_v4",
+          "sdkConstant": "total_postbacks_detailed_v4",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_actions",
+          "sdkConstant": "unique_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_clicks",
+          "sdkConstant": "unique_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_conversions",
+          "sdkConstant": "unique_conversions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_ctr",
+          "sdkConstant": "unique_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_inline_link_click_ctr",
+          "sdkConstant": "unique_inline_link_click_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_inline_link_clicks",
+          "sdkConstant": "unique_inline_link_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_link_clicks_ctr",
+          "sdkConstant": "unique_link_clicks_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_outbound_clicks",
+          "sdkConstant": "unique_outbound_clicks",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_outbound_clicks_ctr",
+          "sdkConstant": "unique_outbound_clicks_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Клики или метрика, рассчитанная по кликам.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_video_continuous_2_sec_watched_actions",
+          "sdkConstant": "unique_video_continuous_2_sec_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "unique_video_view_15_sec",
+          "sdkConstant": "unique_video_view_15_sec",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "updated_time",
+          "sdkConstant": "updated_time",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Дата и время последнего обновления.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_15_sec_watched_actions",
+          "sdkConstant": "video_15_sec_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_30_sec_watched_actions",
+          "sdkConstant": "video_30_sec_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_6_sec_watched_actions",
+          "sdkConstant": "video_6_sec_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_avg_time_watched_actions",
+          "sdkConstant": "video_avg_time_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_continuous_2_sec_watched_actions",
+          "sdkConstant": "video_continuous_2_sec_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_p100_watched_actions",
+          "sdkConstant": "video_p100_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_p25_watched_actions",
+          "sdkConstant": "video_p25_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_p50_watched_actions",
+          "sdkConstant": "video_p50_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_p75_watched_actions",
+          "sdkConstant": "video_p75_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_p95_watched_actions",
+          "sdkConstant": "video_p95_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_play_actions",
+          "sdkConstant": "video_play_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_play_curve_actions",
+          "sdkConstant": "video_play_curve_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_play_retention_0_to_15s_actions",
+          "sdkConstant": "video_play_retention_0_to_15s_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_play_retention_20_to_60s_actions",
+          "sdkConstant": "video_play_retention_20_to_60s_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_play_retention_graph_actions",
+          "sdkConstant": "video_play_retention_graph_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_thruplay_watched_actions",
+          "sdkConstant": "video_thruplay_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_time_watched_actions",
+          "sdkConstant": "video_time_watched_actions",
+          "type": "",
+          "description": "",
+          "inferredDescription": "События результата, конверсии, лиды, покупки или стоимость таких событий.",
+          "source": "sdk"
+        },
+        {
+          "name": "video_view_per_impression",
+          "sdkConstant": "video_view_per_impression",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Креатив, медиа-актив или связанные настройки объявления.",
+          "source": "sdk"
+        },
+        {
+          "name": "website_ctr",
+          "sdkConstant": "website_ctr",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        },
+        {
+          "name": "website_purchase_roas",
+          "sdkConstant": "website_purchase_roas",
+          "type": "",
+          "description": "",
+          "inferredDescription": "Денежный показатель, бюджет, расход, стоимость или ценность конверсий.",
+          "source": "sdk"
+        },
+        {
+          "name": "wish_bid",
+          "sdkConstant": "wish_bid",
+          "type": "",
+          "description": "",
+          "inferredDescription": "",
+          "source": "sdk"
+        }
+      ],
+      "connections": {}
+    }
+  ]
+}

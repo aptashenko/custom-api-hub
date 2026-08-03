@@ -10,6 +10,8 @@
     "start:dev": "nest start --watch",
     "start:prod": "node dist/main",
     "test": "jest",
+    "meta:ads-fields": "node scripts/export-meta-ads-fields.mjs",
+    "meta:ads-samples": "node scripts/export-meta-ads-samples.mjs",
     "sendpulse:import": "ts-node -r tsconfig-paths/register src/scripts/import-sendpulse-audience.ts",
     "typeorm": "typeorm-ts-node-commonjs -d src/typeorm/data-source.ts",
     "typeorm:migration:generate": "typeorm-ts-node-commonjs -d src/typeorm/data-source.ts migration:generate",
