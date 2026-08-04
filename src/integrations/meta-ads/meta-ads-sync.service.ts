@@ -319,13 +319,12 @@ export class MetaAdsSyncService {
   }
 
   private async syncAdsets(accountId: string): Promise<number> {
-    const rows = await this.metaAdsApiService.list<Record<string, unknown>>(
+    const rows = await this.listWithFallback(
+      accountId,
       `/${accountId}/adsets`,
-      {
-        fields:
-          'id,name,campaign_id,status,effective_status,optimization_goal,billing_event,bid_strategy,daily_budget,lifetime_budget,budget_remaining,targeting,promoted_object,attribution_spec,start_time,end_time,created_time,updated_time',
-        limit: '500',
-      },
+      'adsets',
+      'id,name,campaign_id,status,effective_status,optimization_goal,billing_event,bid_strategy,daily_budget,lifetime_budget,budget_remaining,targeting,promoted_object,attribution_spec,start_time,end_time,created_time,updated_time',
+      'id,name,campaign_id,status,effective_status,optimization_goal,billing_event,bid_strategy,daily_budget,lifetime_budget,budget_remaining,start_time,end_time,created_time,updated_time',
     );
     const syncedAt = new Date();
     const entities = rows.map((row) =>
@@ -365,13 +364,12 @@ export class MetaAdsSyncService {
   }
 
   private async syncCreatives(accountId: string): Promise<number> {
-    const rows = await this.metaAdsApiService.list<Record<string, unknown>>(
+    const rows = await this.listWithFallback(
+      accountId,
       `/${accountId}/adcreatives`,
-      {
-        fields:
-          'id,name,title,body,object_type,status,image_hash,thumbnail_url,video_id,instagram_user_id,instagram_permalink_url,call_to_action_type,call_to_action',
-        limit: '50',
-      },
+      'adcreatives',
+      'id,name,title,body,object_type,status,image_hash,thumbnail_url,video_id,instagram_user_id,instagram_permalink_url,call_to_action_type,call_to_action',
+      'id,name,object_type,status',
     );
     const syncedAt = new Date();
     const entities = rows.map((row) => {
@@ -451,6 +449,35 @@ export class MetaAdsSyncService {
     }
 
     return entities.length;
+  }
+
+  private async listWithFallback(
+    accountId: string,
+    path: string,
+    objectName: string,
+    fields: string,
+    fallbackFields: string,
+  ): Promise<Array<Record<string, unknown>>> {
+    try {
+      return await this.metaAdsApiService.list<Record<string, unknown>>(path, {
+        fields,
+        limit: '50',
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (!message.includes('reduce the amount of data')) {
+        throw error;
+      }
+
+      this.logger.warn(
+        `Retrying Meta ${objectName} sync with fallback fields account=${accountId}`,
+      );
+
+      return this.metaAdsApiService.list<Record<string, unknown>>(path, {
+        fields: fallbackFields,
+        limit: '50',
+      });
+    }
   }
 
   private async startSyncRun(
