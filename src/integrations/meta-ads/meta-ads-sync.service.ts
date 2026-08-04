@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ObjectLiteral, Repository } from 'typeorm';
 
 import { MetaAd } from '../../typeorm/entities/meta-ad.entity';
 import { MetaAdAccount } from '../../typeorm/entities/meta-ad-account.entity';
@@ -309,10 +309,7 @@ export class MetaAdsSyncService {
     );
 
     if (entities.length > 0) {
-      await this.campaignsRepository.upsert(
-        entities as any,
-        ['metaCampaignId'],
-      );
+      await this.upsertChunked(this.campaignsRepository, entities, ['metaCampaignId']);
     }
 
     return entities.length;
@@ -354,10 +351,7 @@ export class MetaAdsSyncService {
     );
 
     if (entities.length > 0) {
-      await this.adsetsRepository.upsert(
-        entities as any,
-        ['metaAdsetId'],
-      );
+      await this.upsertChunked(this.adsetsRepository, entities, ['metaAdsetId']);
     }
 
     return entities.length;
@@ -401,10 +395,9 @@ export class MetaAdsSyncService {
     });
 
     if (entities.length > 0) {
-      await this.creativesRepository.upsert(
-        entities as any,
-        ['metaCreativeId'],
-      );
+      await this.upsertChunked(this.creativesRepository, entities, [
+        'metaCreativeId',
+      ]);
     }
 
     return entities.length;
@@ -442,10 +435,7 @@ export class MetaAdsSyncService {
     });
 
     if (entities.length > 0) {
-      await this.adsRepository.upsert(
-        entities as any,
-        ['metaAdId'],
-      );
+      await this.upsertChunked(this.adsRepository, entities, ['metaAdId']);
     }
 
     return entities.length;
@@ -477,6 +467,21 @@ export class MetaAdsSyncService {
         fields: fallbackFields,
         limit: '50',
       });
+    }
+  }
+
+  private async upsertChunked<T extends ObjectLiteral>(
+    repository: Repository<T>,
+    entities: T[],
+    conflictPaths: string[],
+  ): Promise<void> {
+    const chunkSize = 100;
+
+    for (let index = 0; index < entities.length; index += chunkSize) {
+      await repository.upsert(
+        entities.slice(index, index + chunkSize) as any,
+        conflictPaths,
+      );
     }
   }
 
