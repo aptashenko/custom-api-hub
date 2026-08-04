@@ -7,6 +7,13 @@ import { ContactIdentity } from './entities/contact-identity.entity';
 import { Conversation } from './entities/conversation.entity';
 import { LeadSource } from './entities/lead-source.entity';
 import { MakeSyncEvent } from './entities/make-sync-event.entity';
+import { MetaAd } from './entities/meta-ad.entity';
+import { MetaAdAccount } from './entities/meta-ad-account.entity';
+import { MetaAdCreative } from './entities/meta-ad-creative.entity';
+import { MetaAdset } from './entities/meta-adset.entity';
+import { MetaAdsInsight } from './entities/meta-ads-insight.entity';
+import { MetaCampaign } from './entities/meta-campaign.entity';
+import { MetaSyncRun } from './entities/meta-sync-run.entity';
 import { Message } from './entities/message.entity';
 import { RawEvent } from './entities/raw-event.entity';
 import { SendPulseContact } from './entities/sendpulse-contact.entity';
@@ -24,6 +31,13 @@ import { SendPulseContact } from './entities/sendpulse-contact.entity';
           Conversation,
           LeadSource,
           MakeSyncEvent,
+          MetaAd,
+          MetaAdAccount,
+          MetaAdCreative,
+          MetaAdset,
+          MetaAdsInsight,
+          MetaCampaign,
+          MetaSyncRun,
           Message,
           RawEvent,
           SendPulseContact,
