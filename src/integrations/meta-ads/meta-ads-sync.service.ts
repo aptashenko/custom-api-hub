@@ -369,8 +369,8 @@ export class MetaAdsSyncService {
       `/${accountId}/adcreatives`,
       {
         fields:
-          'id,name,title,body,object_type,status,image_hash,image_url,thumbnail_url,video_id,instagram_user_id,instagram_permalink_url,call_to_action_type,call_to_action,object_story_spec,asset_feed_spec',
-        limit: '500',
+          'id,name,title,body,object_type,status,image_hash,thumbnail_url,video_id,instagram_user_id,instagram_permalink_url,call_to_action_type,call_to_action',
+        limit: '50',
       },
     );
     const syncedAt = new Date();
