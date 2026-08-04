@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 
+import { SyncMetaDictionariesDto } from './dto/sync-meta-dictionaries.dto';
 import { SyncMetaInsightsDto } from './dto/sync-meta-insights.dto';
 import { MetaAdsSyncService } from './meta-ads-sync.service';
 
@@ -8,8 +9,8 @@ export class MetaAdsController {
   constructor(private readonly metaAdsSyncService: MetaAdsSyncService) {}
 
   @Post('sync/dictionaries')
-  syncDictionaries(): Promise<unknown> {
-    return this.metaAdsSyncService.syncDictionaries();
+  syncDictionaries(@Body() body: SyncMetaDictionariesDto = {}): Promise<unknown> {
+    return this.metaAdsSyncService.syncDictionaries(body.accountIds);
   }
 
   @Post('sync/insights')
