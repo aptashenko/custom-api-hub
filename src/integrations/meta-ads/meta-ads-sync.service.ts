@@ -123,6 +123,17 @@ const META_ADS_INSIGHTS_FIELDS = [
   'wish_bid',
 ];
 
+const META_ADS_INSIGHTS_IDENTITY_FIELDS = [
+  'account_id',
+  'campaign_id',
+  'adset_id',
+  'ad_id',
+  'date_start',
+  'date_stop',
+];
+
+const META_ADS_INSIGHTS_BATCH_SIZE = 15;
+
 @Injectable()
 export class MetaAdsSyncService {
   private readonly logger = new Logger(MetaAdsSyncService.name);
@@ -195,16 +206,11 @@ export class MetaAdsSyncService {
 
     try {
       for (const accountId of accountIds) {
-        const rows = await this.metaAdsApiService.list<Record<string, unknown>>(
-          `/${accountId}/insights`,
-          {
-            fields: META_ADS_INSIGHTS_FIELDS.join(','),
-            level: 'ad',
-            time_increment: '1',
-            time_range: JSON.stringify({ since, until }),
-            breakdowns: breakdowns.length > 0 ? breakdowns.join(',') : undefined,
-            limit: '500',
-          },
+        const rows = await this.fetchInsightRows(
+          accountId,
+          since,
+          until,
+          breakdowns,
         );
 
         const syncedAt = new Date();
@@ -538,6 +544,179 @@ export class MetaAdsSyncService {
         limit: '50',
       });
     }
+  }
+
+  private async fetchInsightRows(
+    accountId: string,
+    since: string,
+    until: string,
+    breakdowns: string[],
+  ): Promise<Array<Record<string, unknown>>> {
+    try {
+      return await this.metaAdsApiService.list<Record<string, unknown>>(
+        `/${accountId}/insights`,
+        this.buildInsightsParams(
+          META_ADS_INSIGHTS_FIELDS,
+          since,
+          until,
+          breakdowns,
+        ),
+      );
+    } catch (error) {
+      if (!this.isReduceDataError(error)) {
+        throw error;
+      }
+
+      this.logger.warn(
+        `Retrying Meta insights sync with field batches account=${accountId} since=${since} until=${until}`,
+      );
+
+      return this.fetchInsightRowsByFieldBatches(
+        accountId,
+        since,
+        until,
+        breakdowns,
+      );
+    }
+  }
+
+  private async fetchInsightRowsByFieldBatches(
+    accountId: string,
+    since: string,
+    until: string,
+    breakdowns: string[],
+  ): Promise<Array<Record<string, unknown>>> {
+    const mergedRows = new Map<string, Record<string, unknown>>();
+    const baseRows = await this.metaAdsApiService.list<Record<string, unknown>>(
+      `/${accountId}/insights`,
+      this.buildInsightsParams(
+        META_ADS_INSIGHTS_IDENTITY_FIELDS,
+        since,
+        until,
+        breakdowns,
+      ),
+    );
+
+    for (const row of baseRows) {
+      mergedRows.set(this.insightMergeKey(row), row);
+    }
+
+    const metricFields = META_ADS_INSIGHTS_FIELDS.filter(
+      (field) => !META_ADS_INSIGHTS_IDENTITY_FIELDS.includes(field),
+    );
+
+    for (let index = 0; index < metricFields.length; index += META_ADS_INSIGHTS_BATCH_SIZE) {
+      const fields = metricFields.slice(index, index + META_ADS_INSIGHTS_BATCH_SIZE);
+      const rows = await this.fetchInsightFieldBatch(
+        accountId,
+        since,
+        until,
+        breakdowns,
+        fields,
+      );
+
+      for (const row of rows) {
+        const key = this.insightMergeKey(row);
+        mergedRows.set(key, {
+          ...(mergedRows.get(key) ?? {}),
+          ...row,
+        });
+      }
+    }
+
+    return [...mergedRows.values()];
+  }
+
+  private async fetchInsightFieldBatch(
+    accountId: string,
+    since: string,
+    until: string,
+    breakdowns: string[],
+    fields: string[],
+  ): Promise<Array<Record<string, unknown>>> {
+    try {
+      return await this.metaAdsApiService.list<Record<string, unknown>>(
+        `/${accountId}/insights`,
+        this.buildInsightsParams(
+          [...META_ADS_INSIGHTS_IDENTITY_FIELDS, ...fields],
+          since,
+          until,
+          breakdowns,
+        ),
+      );
+    } catch (error) {
+      if (!this.isReduceDataError(error) || fields.length === 1) {
+        throw error;
+      }
+
+      const midpoint = Math.ceil(fields.length / 2);
+      const leftRows = await this.fetchInsightFieldBatch(
+        accountId,
+        since,
+        until,
+        breakdowns,
+        fields.slice(0, midpoint),
+      );
+      const rightRows = await this.fetchInsightFieldBatch(
+        accountId,
+        since,
+        until,
+        breakdowns,
+        fields.slice(midpoint),
+      );
+      const rows = new Map<string, Record<string, unknown>>();
+
+      for (const row of [...leftRows, ...rightRows]) {
+        const key = this.insightMergeKey(row);
+        rows.set(key, {
+          ...(rows.get(key) ?? {}),
+          ...row,
+        });
+      }
+
+      return [...rows.values()];
+    }
+  }
+
+  private buildInsightsParams(
+    fields: string[],
+    since: string,
+    until: string,
+    breakdowns: string[],
+  ): Record<string, string | undefined> {
+    return {
+      fields: [...new Set(fields)].join(','),
+      level: 'ad',
+      time_increment: '1',
+      time_range: JSON.stringify({ since, until }),
+      breakdowns: breakdowns.length > 0 ? breakdowns.join(',') : undefined,
+      limit: '500',
+    };
+  }
+
+  private insightMergeKey(row: Record<string, unknown>): string {
+    return [
+      row.account_id,
+      row.campaign_id,
+      row.adset_id,
+      row.ad_id,
+      row.date_start,
+      row.date_stop,
+      row.age,
+      row.gender,
+      row.country,
+      row.region,
+      row.publisher_platform,
+      row.platform_position,
+      row.device_platform,
+      row.impression_device,
+    ].map((value) => this.stringValue(value) ?? '').join('|');
+  }
+
+  private isReduceDataError(error: unknown): boolean {
+    const message = error instanceof Error ? error.message : String(error);
+
+    return message.includes('reduce the amount of data');
   }
 
   private async upsertChunked<T extends ObjectLiteral>(
