@@ -76,20 +76,45 @@ export class MetaAdsApiService {
   }
 
   private async fetchJson<T>(url: URL): Promise<T> {
-    const response = await fetch(url);
-    const body = await response.text();
-    let json: T & { error?: { message?: string } };
+    const maxAttempts = 4;
 
-    try {
-      json = JSON.parse(body);
-    } catch {
-      throw new Error(`Meta API returned non-JSON response: ${body.slice(0, 300)}`);
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      const response = await fetch(url);
+      const body = await response.text();
+      let json: T & { error?: { message?: string } };
+
+      try {
+        json = JSON.parse(body);
+      } catch {
+        throw new Error(`Meta API returned non-JSON response: ${body.slice(0, 300)}`);
+      }
+
+      if (!response.ok || json.error) {
+        const message = json.error?.message ?? response.statusText;
+
+        if (attempt < maxAttempts && this.isRetryableError(message, response.status)) {
+          await this.sleep(1000 * attempt * attempt);
+          continue;
+        }
+
+        throw new Error(message);
+      }
+
+      return json;
     }
 
-    if (!response.ok || json.error) {
-      throw new Error(json.error?.message ?? response.statusText);
-    }
+    throw new Error('Meta API request failed');
+  }
 
-    return json;
+  private isRetryableError(message: string, status: number): boolean {
+    return status >= 500
+      || message.includes('Service temporarily unavailable')
+      || message.includes('An unknown error occurred');
+  }
+
+  private sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
   }
 }
