@@ -25,6 +25,8 @@ interface InsightsSyncOptions {
   accountIds?: string[];
   breakdowns?: string[];
   chunkDays?: number;
+  activeDaysOnly?: boolean;
+  activeScanChunkDays?: number;
 }
 
 const META_ADS_INSIGHTS_FIELDS = [
@@ -130,6 +132,16 @@ const META_ADS_INSIGHTS_IDENTITY_FIELDS = [
   'ad_id',
   'date_start',
   'date_stop',
+];
+
+const META_ADS_INSIGHTS_ACTIVITY_FIELDS = [
+  'account_id',
+  'ad_id',
+  'date_start',
+  'date_stop',
+  'spend',
+  'impressions',
+  'clicks',
 ];
 
 const META_ADS_INSIGHTS_BATCH_SIZE = 15;
@@ -301,11 +313,23 @@ export class MetaAdsSyncService {
   }
 
   async syncInsightsHistory(options: InsightsSyncOptions = {}) {
-    const since = options.since ?? this.monthsAgoIsoDate(37);
+    const since = this.clampSinceToMetaRetention(
+      options.since ?? this.monthsAgoIsoDate(37),
+    );
     const until = options.until ?? this.todayIsoDate();
     const chunkDays = options.chunkDays && options.chunkDays > 0
       ? options.chunkDays
       : 30;
+
+    if (options.activeDaysOnly) {
+      return this.syncActiveInsightsHistory({
+        ...options,
+        since,
+        until,
+        chunkDays,
+      });
+    }
+
     const chunks = this.buildDateChunks(since, until, chunkDays);
     let rows = 0;
 
@@ -323,6 +347,63 @@ export class MetaAdsSyncService {
       until,
       chunkDays,
       chunks: chunks.length,
+      rows,
+    };
+  }
+
+  private async syncActiveInsightsHistory(
+    options: InsightsSyncOptions & { since: string; until: string; chunkDays: number },
+  ) {
+    const accountIds = options.accountIds?.length
+      ? options.accountIds
+      : this.metaAdsApiService.getConfiguredAccountIds();
+    const scanChunkDays = options.activeScanChunkDays && options.activeScanChunkDays > 0
+      ? options.activeScanChunkDays
+      : 30;
+    let rows = 0;
+    let activeDays = 0;
+    let scannedChunks = 0;
+
+    for (const accountId of accountIds) {
+      const activeDates = await this.fetchActiveInsightDates(
+        accountId,
+        options.since,
+        options.until,
+        options.breakdowns ?? [],
+        scanChunkDays,
+      );
+      activeDays += activeDates.length;
+
+      this.logger.log(
+        `Found Meta active insight dates account=${accountId} activeDays=${activeDates.length} since=${options.since} until=${options.until}`,
+      );
+
+      for (const date of activeDates) {
+        const result = await this.syncInsights({
+          ...options,
+          accountIds: [accountId],
+          since: date,
+          until: date,
+        });
+        rows += result.rows;
+      }
+
+      scannedChunks += this.buildDateChunks(
+        options.since,
+        options.until,
+        scanChunkDays,
+      ).length;
+    }
+
+    return {
+      since: options.since,
+      until: options.until,
+      chunkDays: options.chunkDays,
+      activeDaysOnly: true,
+      activeScanChunkDays: scanChunkDays,
+      accounts: accountIds.length,
+      scannedChunks,
+      activeDays,
       rows,
     };
   }
@@ -580,6 +661,44 @@ export class MetaAdsSyncService {
     }
   }
 
+  private async fetchActiveInsightDates(
+    accountId: string,
+    since: string,
+    until: string,
+    breakdowns: string[],
+    chunkDays: number,
+  ): Promise<string[]> {
+    const dates = new Set<string>();
+
+    for (const chunk of this.buildDateChunks(since, until, chunkDays)) {
+      const rows = await this.metaAdsApiService.list<Record<string, unknown>>(
+        `/${accountId}/insights`,
+        this.buildInsightsParams(
+          META_ADS_INSIGHTS_ACTIVITY_FIELDS,
+          chunk.since,
+          chunk.until,
+          breakdowns,
+        ),
+      );
+
+      for (const row of rows) {
+        if (this.hasInsightActivity(row)) {
+          const date = this.stringValue(row.date_start);
+
+          if (date) {
+            dates.add(date);
+          }
+        }
+      }
+
+      this.logger.log(
+        `Scanned Meta active insight dates account=${accountId} activeDays=${dates.size} since=${chunk.since} until=${chunk.until}`,
+      );
+    }
+
+    return [...dates].sort();
+  }
+
   private async fetchInsightRowsByFieldBatches(
     accountId: string,
     since: string,
@@ -719,6 +838,26 @@ export class MetaAdsSyncService {
     return message.includes('reduce the amount of data');
   }
 
+  private hasInsightActivity(row: Record<string, unknown>): boolean {
+    return this.numberLikeValue(row.spend) > 0
+      || this.numberLikeValue(row.impressions) > 0
+      || this.numberLikeValue(row.clicks) > 0;
+  }
+
+  private numberLikeValue(value: unknown): number {
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      const parsed = Number(value);
+
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+
+    return 0;
+  }
+
   private async upsertChunked<T extends ObjectLiteral>(
     repository: Repository<T>,
     entities: T[],
@@ -812,6 +951,20 @@ export class MetaAdsSyncService {
     date.setUTCMonth(date.getUTCMonth() - months);
 
     return date.toISOString().slice(0, 10);
+  }
+
+  private clampSinceToMetaRetention(since: string): string {
+    const earliestSince = this.monthsAgoIsoDate(37);
+
+    if (since >= earliestSince) {
+      return since;
+    }
+
+    this.logger.warn(
+      `Clamped Meta insights since from ${since} to ${earliestSince} because Meta allows about 37 months of history`,
+    );
+
+    return earliestSince;
   }
 
   private buildDateChunks(

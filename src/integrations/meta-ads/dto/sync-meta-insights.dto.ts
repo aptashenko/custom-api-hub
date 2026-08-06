@@ -4,4 +4,6 @@ export class SyncMetaInsightsDto {
   accountIds?: string[];
   breakdowns?: string[];
   chunkDays?: number;
+  activeDaysOnly?: boolean;
+  activeScanChunkDays?: number;
 }
