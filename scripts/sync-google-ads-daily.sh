@@ -6,9 +6,17 @@ cd "$APP_DIR"
 
 ENV_FILE="${ENV_FILE:-${APP_DIR}/.env}"
 if [ -f "$ENV_FILE" ]; then
-  PORT="${PORT:-$(grep -E '^PORT=' "$ENV_FILE" | tail -n1 | cut -d= -f2-)}"
-  GOOGLE_ADS_CUSTOMER_IDS="${GOOGLE_ADS_CUSTOMER_IDS:-$(grep -E '^GOOGLE_ADS_CUSTOMER_IDS=' "$ENV_FILE" | tail -n1 | cut -d= -f2-)}"
-  GOOGLE_ADS_CUSTOMER_ID="${GOOGLE_ADS_CUSTOMER_ID:-$(grep -E '^GOOGLE_ADS_CUSTOMER_ID=' "$ENV_FILE" | tail -n1 | cut -d= -f2-)}"
+  ENV_PORT="$(grep -E '^PORT=' "$ENV_FILE" | tail -n1 | cut -d= -f2- || true)"
+  ENV_GOOGLE_ADS_CUSTOMER_IDS="$(grep -E '^GOOGLE_ADS_CUSTOMER_IDS=' "$ENV_FILE" | tail -n1 | cut -d= -f2- || true)"
+  ENV_GOOGLE_ADS_CUSTOMER_ID="$(grep -E '^GOOGLE_ADS_CUSTOMER_ID=' "$ENV_FILE" | tail -n1 | cut -d= -f2- || true)"
+
+  PORT="${PORT:-$ENV_PORT}"
+  if [ -n "${ENV_GOOGLE_ADS_CUSTOMER_IDS:-}" ]; then
+    GOOGLE_ADS_CUSTOMER_IDS="${GOOGLE_ADS_CUSTOMER_IDS:-$ENV_GOOGLE_ADS_CUSTOMER_IDS}"
+  fi
+  if [ -n "${ENV_GOOGLE_ADS_CUSTOMER_ID:-}" ]; then
+    GOOGLE_ADS_CUSTOMER_ID="${GOOGLE_ADS_CUSTOMER_ID:-$ENV_GOOGLE_ADS_CUSTOMER_ID}"
+  fi
 fi
 
 PORT="${PORT:-3000}"
