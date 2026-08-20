@@ -9,6 +9,9 @@ describe('LeadSourcesService', () => {
     create: jest.Mock;
     save: jest.Mock;
   };
+  let googleAdsClicksRepository: {
+    findOne: jest.Mock;
+  };
   let service: LeadSourcesService;
 
   const client = {
@@ -31,7 +34,13 @@ describe('LeadSourcesService', () => {
         Promise.resolve({ id: 'lead-source-id', ...input }),
       ),
     };
-    service = new LeadSourcesService(repository as never);
+    googleAdsClicksRepository = {
+      findOne: jest.fn().mockResolvedValue(null),
+    };
+    service = new LeadSourcesService(
+      repository as never,
+      googleAdsClicksRepository as never,
+    );
   });
 
   it('saves UTM source', async () => {
@@ -54,7 +63,62 @@ describe('LeadSourcesService', () => {
       utmCampaign: null,
       utmContent: null,
       utmTerm: null,
+      landingPage: null,
+      referrer: null,
+      gclid: null,
+      gbraid: null,
+      wbraid: null,
+      googleCustomerId: null,
+      googleCampaignId: null,
+      googleAdGroupId: null,
+      googleAdId: null,
+      googleKeyword: null,
+      googleMatchType: null,
+      googleDevice: null,
     });
+  });
+
+  it('enriches Google UTM data from click by gclid', async () => {
+    googleAdsClicksRepository.findOne.mockResolvedValue({
+      googleCustomerId: '3099649891',
+      googleCampaignId: '22771338959',
+      googleAdGroupId: '182906412675',
+      googleAdId: '799871340424',
+      keywordText: 'купить квартиру бенидорм',
+      keywordMatchType: 'PHRASE',
+      device: 'DESKTOP',
+    });
+
+    await service.createFromEvent({
+      client,
+      event: {
+        ...baseEvent,
+        utm: {
+          source: 'google',
+          medium: 'cpc',
+          campaign: '22771338959',
+          content: '799871340424',
+          gclid: 'gclid-1',
+        },
+      },
+    });
+
+    expect(googleAdsClicksRepository.findOne).toHaveBeenCalledWith({
+      where: { gclid: 'gclid-1' },
+      order: { date: 'DESC' },
+    });
+    expect(repository.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        gclid: 'gclid-1',
+        googleCustomerId: '3099649891',
+        googleCampaignId: '22771338959',
+        googleAdGroupId: '182906412675',
+        googleAdId: '799871340424',
+        googleKeyword: 'купить квартиру бенидорм',
+        googleMatchType: 'PHRASE',
+        googleDevice: 'DESKTOP',
+      }),
+    );
   });
 
   it('returns existing lead source for duplicate UTM data', async () => {

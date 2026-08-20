@@ -44,6 +44,36 @@ export class LeadSource {
   @Column({ type: 'varchar', nullable: true })
   landingPage?: string | null;
 
+  @Column({ type: 'varchar', nullable: true })
+  gclid?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  gbraid?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  wbraid?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleCustomerId?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleCampaignId?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleAdGroupId?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleAdId?: string | null;
+
+  @Column({ type: 'text', nullable: true })
+  googleKeyword?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleMatchType?: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleDevice?: string | null;
+
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 }

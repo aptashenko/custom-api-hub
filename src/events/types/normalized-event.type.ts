@@ -26,6 +26,18 @@ export interface NormalizedEvent {
     campaign?: string;
     content?: string;
     term?: string;
+    gclid?: string;
+    gbraid?: string;
+    wbraid?: string;
+    landingPage?: string;
+    referrer?: string;
+    googleCustomerId?: string;
+    googleCampaignId?: string;
+    googleAdGroupId?: string;
+    googleAdId?: string;
+    googleKeyword?: string;
+    googleMatchType?: string;
+    googleDevice?: string;
   };
 
   rawEventId?: string;

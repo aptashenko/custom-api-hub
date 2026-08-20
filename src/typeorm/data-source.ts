@@ -5,6 +5,12 @@ import { DataSource } from 'typeorm';
 import { Client } from './entities/client.entity';
 import { ContactIdentity } from './entities/contact-identity.entity';
 import { Conversation } from './entities/conversation.entity';
+import { GoogleAdsAd } from './entities/google-ads-ad.entity';
+import { GoogleAdsAdGroup } from './entities/google-ads-ad-group.entity';
+import { GoogleAdsCampaign } from './entities/google-ads-campaign.entity';
+import { GoogleAdsClick } from './entities/google-ads-click.entity';
+import { GoogleAdsInsight } from './entities/google-ads-insight.entity';
+import { GoogleAdsSyncRun } from './entities/google-ads-sync-run.entity';
 import { LeadSource } from './entities/lead-source.entity';
 import { MakeSyncEvent } from './entities/make-sync-event.entity';
 import { MetaAd } from './entities/meta-ad.entity';
@@ -27,6 +33,12 @@ export default new DataSource({
     Client,
     ContactIdentity,
     Conversation,
+    GoogleAdsAd,
+    GoogleAdsAdGroup,
+    GoogleAdsCampaign,
+    GoogleAdsClick,
+    GoogleAdsInsight,
+    GoogleAdsSyncRun,
     LeadSource,
     MakeSyncEvent,
     MetaAd,
