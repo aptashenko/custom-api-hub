@@ -20,6 +20,8 @@ describe('ClientMakePayloadService', () => {
         name: 'Alex',
         phone: '+10000000000',
         email: 'alex@example.com',
+        leadCreatedAt: new Date('2026-07-02T12:00:00.000Z'),
+        createdAt: new Date('2026-07-03T12:00:00.000Z'),
       }),
     };
     messagesRepository = {
@@ -29,6 +31,9 @@ describe('ClientMakePayloadService', () => {
       getCard: jest.fn().mockResolvedValue({
         id: 'client-id',
         clientNumber: 1001,
+        leadCreatedAt: '2026-07-02T12:00:00.000Z',
+        createdAt: '2026-07-03T12:00:00.000Z',
+        updatedAt: '2026-07-03T12:30:00.000Z',
         profile: {
           name: 'Alex',
           phone: '+10000000000',
@@ -115,10 +120,15 @@ describe('ClientMakePayloadService', () => {
         name: 'Alex',
         phone: '+10000000000',
         email: 'alex@example.com',
+        leadCreatedAt: '2026-07-02T12:00:00.000Z',
+        createdAt: '2026-07-03T12:00:00.000Z',
       },
       clientCard: {
         id: 'client-id',
         clientNumber: 1001,
+        leadCreatedAt: '2026-07-02T12:00:00.000Z',
+        createdAt: '2026-07-03T12:00:00.000Z',
+        updatedAt: '2026-07-03T12:30:00.000Z',
         profile: {
           name: 'Alex',
           phone: '+10000000000',

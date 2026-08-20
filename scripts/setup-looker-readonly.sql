@@ -29,7 +29,8 @@ SELECT
   c."phoneNormalized" AS phone_normalized,
   c.email,
   c."createdAt" AS created_at,
-  c."updatedAt" AS updated_at
+  c."updatedAt" AS updated_at,
+  c."leadCreatedAt" AS lead_created_at
 FROM public.client c;
 
 CREATE OR REPLACE VIEW public.looker_messages AS

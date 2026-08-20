@@ -42,6 +42,10 @@ export class Client {
   @Column({ type: 'varchar', nullable: true })
   email?: string | null;
 
+  @Index('IDX_client_lead_created_at')
+  @Column({ type: 'timestamptz', default: () => 'now()' })
+  leadCreatedAt: Date;
+
   @CreateDateColumn({ type: 'timestamptz' })
   createdAt: Date;
 

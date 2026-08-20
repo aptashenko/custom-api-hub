@@ -11,6 +11,9 @@ import { SendPulseContact } from '../typeorm/entities/sendpulse-contact.entity';
 export interface ClientCard {
   id: string;
   clientNumber: number;
+  leadCreatedAt: string;
+  createdAt: string;
+  updatedAt: string;
   profile: {
     name?: string | null;
     phone?: string | null;
@@ -128,6 +131,9 @@ export class ClientCardService {
     return {
       id: client.id,
       clientNumber: client.clientNumber,
+      leadCreatedAt: client.leadCreatedAt.toISOString(),
+      createdAt: client.createdAt.toISOString(),
+      updatedAt: client.updatedAt.toISOString(),
       profile: {
         name: this.firstString([
           client.name,

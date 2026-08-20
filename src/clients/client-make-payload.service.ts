@@ -67,6 +67,8 @@ export class ClientMakePayloadService {
         name: client?.name ?? null,
         phone: client?.phone ?? null,
         email: client?.email ?? null,
+        leadCreatedAt: client?.leadCreatedAt?.toISOString() ?? null,
+        createdAt: client?.createdAt?.toISOString() ?? null,
       },
       clientCard: this.toMakeClientCard(clientCard),
       channel: params.channel,

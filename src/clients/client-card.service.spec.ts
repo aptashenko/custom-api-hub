@@ -28,6 +28,9 @@ describe('ClientCardService', () => {
         name: null,
         phone: null,
         email: 'alex@example.com',
+        leadCreatedAt: new Date('2026-07-07T12:00:00.000Z'),
+        createdAt: new Date('2026-07-07T12:01:00.000Z'),
+        updatedAt: new Date('2026-07-07T12:02:00.000Z'),
       }),
     };
     identitiesRepository = {
@@ -101,6 +104,9 @@ describe('ClientCardService', () => {
     await expect(service.getCard('1001')).resolves.toEqual({
       id: 'client-id',
       clientNumber: 1001,
+      leadCreatedAt: '2026-07-07T12:00:00.000Z',
+      createdAt: '2026-07-07T12:01:00.000Z',
+      updatedAt: '2026-07-07T12:02:00.000Z',
       profile: {
         name: 'Alex',
         phone: '+10000000000',
