@@ -62,7 +62,7 @@ export class GoogleAdsInsight {
   @Column({ type: 'numeric', nullable: true })
   ctr?: string | null;
 
-  @Column({ type: 'bigint', nullable: true })
+  @Column({ type: 'numeric', nullable: true })
   averageCpcMicros?: string | null;
 
   @Column({ type: 'numeric', nullable: true })
@@ -77,7 +77,7 @@ export class GoogleAdsInsight {
   @Column({ type: 'numeric', nullable: true })
   conversionsValue?: string | null;
 
-  @Column({ type: 'bigint', nullable: true })
+  @Column({ type: 'numeric', nullable: true })
   costPerConversionMicros?: string | null;
 
   @Column({ type: 'numeric', nullable: true })
