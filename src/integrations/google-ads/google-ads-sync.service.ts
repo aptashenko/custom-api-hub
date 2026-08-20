@@ -88,17 +88,19 @@ export class GoogleAdsSyncService {
           entities.push(...(await this.fetchClickEntities(customerId, date)));
         }
 
-        if (entities.length > 0) {
-          await this.upsertChunked(this.clicksRepository, entities, [
+        const uniqueEntities = this.deduplicateClicks(entities);
+
+        if (uniqueEntities.length > 0) {
+          await this.upsertChunked(this.clicksRepository, uniqueEntities, [
             'googleCustomerId',
             'date',
             'gclid',
           ]);
         }
 
-        rows += entities.length;
+        rows += uniqueEntities.length;
         this.logger.log(
-          `Synced Google Ads clicks customer=${customerId} rows=${entities.length} dateFrom=${dateFrom} dateTo=${dateTo}`,
+          `Synced Google Ads clicks customer=${customerId} rows=${uniqueEntities.length} fetchedRows=${entities.length} dateFrom=${dateFrom} dateTo=${dateTo}`,
         );
       }
 
@@ -531,6 +533,31 @@ export class GoogleAdsSyncService {
     for (let index = 0; index < entities.length; index += 500) {
       await repository.upsert(entities.slice(index, index + 500), conflictPaths);
     }
+  }
+
+  private deduplicateClicks(entities: GoogleAdsClick[]): GoogleAdsClick[] {
+    const byIdentity = new Map<string, GoogleAdsClick>();
+    const withoutGclid: GoogleAdsClick[] = [];
+
+    for (const entity of entities) {
+      if (!entity.gclid) {
+        withoutGclid.push(entity);
+        continue;
+      }
+
+      const key = [entity.googleCustomerId, entity.date, entity.gclid].join('|');
+      const existing = byIdentity.get(key);
+
+      if (!existing) {
+        byIdentity.set(key, entity);
+        continue;
+      }
+
+      existing.clicks += entity.clicks;
+      existing.raw = [existing.raw, entity.raw];
+    }
+
+    return [...Array.from(byIdentity.values()), ...withoutGclid];
   }
 
   private recordValue(value: unknown): Record<string, unknown> | null {

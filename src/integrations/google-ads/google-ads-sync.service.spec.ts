@@ -177,6 +177,49 @@ describe('GoogleAdsSyncService', () => {
     );
   });
 
+  it('deduplicates click rows by customer, date, and gclid before upsert', async () => {
+    googleAdsApiService.search.mockResolvedValue([
+      buildClickRow({ gclid: 'gclid-1', clicks: '1' }),
+      buildClickRow({ gclid: 'gclid-1', clicks: '2' }),
+    ]);
+
+    await service.syncClicks({
+      dateFrom: '2026-08-18',
+      dateTo: '2026-08-18',
+    });
+
+    expect(clicksRepository.upsert).toHaveBeenCalledWith(
+      [
+        expect.objectContaining({
+          gclid: 'gclid-1',
+          clicks: 3,
+          raw: [expect.any(Object), expect.any(Object)],
+        }),
+      ],
+      ['googleCustomerId', 'date', 'gclid'],
+    );
+  });
+
+  it('does not deduplicate click rows without gclid', async () => {
+    googleAdsApiService.search.mockResolvedValue([
+      buildClickRow({ gclid: null, clicks: '1' }),
+      buildClickRow({ gclid: null, clicks: '1' }),
+    ]);
+
+    await service.syncClicks({
+      dateFrom: '2026-08-18',
+      dateTo: '2026-08-18',
+    });
+
+    expect(clicksRepository.upsert).toHaveBeenCalledWith(
+      [
+        expect.objectContaining({ gclid: null, clicks: 1 }),
+        expect.objectContaining({ gclid: null, clicks: 1 }),
+      ],
+      ['googleCustomerId', 'date', 'gclid'],
+    );
+  });
+
   it('replaces insight rows for the requested range', async () => {
     googleAdsApiService.search.mockResolvedValue([
       {
@@ -226,6 +269,23 @@ function createRepository() {
     create: jest.fn((input) => input),
     save: jest.fn(async (input) => input),
     upsert: jest.fn(async () => undefined),
+  };
+}
+
+function buildClickRow(params: { gclid: string | null; clicks: string }) {
+  return {
+    customer: { id: '3099649891' },
+    clickView: {
+      gclid: params.gclid,
+      adGroupAd: 'customers/3099649891/adGroupAds/182906412675~799871340424',
+    },
+    segments: {
+      date: '2026-08-18',
+      device: 'DESKTOP',
+    },
+    campaign: { id: '22771338959' },
+    adGroup: { id: '182906412675' },
+    metrics: { clicks: params.clicks },
   };
 }
 
