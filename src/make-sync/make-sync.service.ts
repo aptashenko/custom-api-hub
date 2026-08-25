@@ -193,11 +193,14 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
       const clientId = this.getClientId(event);
       const channel = this.getChannel(event);
       const messageIds = this.getMessageIds(event.payload);
-      const finalPayload = await this.aggregationService.buildPendingPayload({
-        clientId,
-        channel,
-        messageIds,
-      });
+      const finalPayload = this.applyEventBotContext(
+        await this.aggregationService.buildPendingPayload({
+          clientId,
+          channel,
+          messageIds,
+        }),
+        event.payload,
+      );
 
       makeWebhookLog = await this.createMakeWebhookLog({
         event,
@@ -312,6 +315,49 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
+  }
+
+  private applyEventBotContext(
+    finalPayload: Record<string, unknown>,
+    eventPayload: unknown,
+  ): Record<string, unknown> {
+    if (!this.isRecord(eventPayload)) {
+      return finalPayload;
+    }
+
+    const botId = this.getPayloadString(eventPayload, 'botId');
+    const botName = this.getPayloadString(eventPayload, 'botName');
+    const botUrl = this.getPayloadString(eventPayload, 'botUrl');
+
+    if (!botId && !botName && !botUrl) {
+      return finalPayload;
+    }
+
+    const payload = {
+      ...finalPayload,
+      botId: botId ?? finalPayload.botId ?? null,
+      botName: botName ?? finalPayload.botName ?? null,
+      botUrl: botUrl ?? finalPayload.botUrl ?? null,
+    };
+    const clientCard = this.getRecord(payload, 'clientCard');
+    const sendPulse = this.getRecord(clientCard, 'sendPulse');
+
+    if (!clientCard || !sendPulse) {
+      return payload;
+    }
+
+    return {
+      ...payload,
+      clientCard: {
+        ...clientCard,
+        sendPulse: {
+          ...sendPulse,
+          botId: botId ?? sendPulse.botId ?? null,
+          botName: botName ?? sendPulse.botName ?? null,
+          botUrl: botUrl ?? sendPulse.botUrl ?? null,
+        },
+      },
+    };
   }
 
   private async createMakeWebhookLog(params: {

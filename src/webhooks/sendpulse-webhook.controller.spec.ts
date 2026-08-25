@@ -135,6 +135,9 @@ describe('SendpulseWebhookController', () => {
       clientId: 'client-id',
       channel: 'SENDPULSE',
       messageId: 'message-id',
+      botId: undefined,
+      botName: undefined,
+      botUrl: undefined,
     });
     expect(sendPulseProfilesService.upsertFromWebhookPayload).toHaveBeenCalledWith(
       payload,

@@ -7,6 +7,11 @@ export interface NormalizedEvent {
 
   externalUserId?: string;
   externalMessageId?: string;
+  sourceBot?: {
+    id?: string;
+    name?: string;
+    url?: string;
+  };
 
   client: {
     name?: string;

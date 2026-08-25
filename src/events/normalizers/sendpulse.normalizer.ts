@@ -76,6 +76,7 @@ export class SendPulseNormalizer {
       eventType,
       externalUserId,
       externalMessageId,
+      sourceBot: this.extractBot(eventPayload),
       client: {
         name:
           this.getString(eventPayload, ['contact', 'name']) ??
@@ -153,6 +154,22 @@ export class SendPulseNormalizer {
     }
 
     return Channel.SENDPULSE;
+  }
+
+  private extractBot(payload: unknown): NormalizedEvent['sourceBot'] {
+    const bot = {
+      id: this.getString(payload, ['bot', 'id']),
+      name:
+        this.getString(payload, ['bot', 'name']) ??
+        this.getString(payload, ['bot', 'username']),
+      url: this.getString(payload, ['bot', 'url']),
+    };
+
+    if (!bot.id && !bot.name && !bot.url) {
+      return undefined;
+    }
+
+    return bot;
   }
 
   private extractUtm(payload: unknown): NormalizedEvent['utm'] {

@@ -61,6 +61,9 @@ describe('AggregationService', () => {
       clientId: 'client-id',
       channel: Channel.TELEGRAM,
       messageId: 'message-1',
+      botId: 'bot-1',
+      botName: 'Main Telegram Bot',
+      botUrl: 'https://t.me/main_bot',
     });
 
     expect(makeSyncEventsRepository.create).toHaveBeenCalledWith({
@@ -69,6 +72,9 @@ describe('AggregationService', () => {
       payload: expect.objectContaining({
         clientId: 'client-id',
         channel: Channel.TELEGRAM,
+        botId: 'bot-1',
+        botName: 'Main Telegram Bot',
+        botUrl: 'https://t.me/main_bot',
         debounceUntil: '2026-07-03T12:01:00.000Z',
         messageIds: ['message-1'],
       }),
@@ -83,6 +89,7 @@ describe('AggregationService', () => {
       status: MakeSyncStatus.PENDING,
       payload: {
         channel: Channel.TELEGRAM,
+        botId: 'bot-1',
         messageIds: ['message-1'],
       },
     };
@@ -92,6 +99,7 @@ describe('AggregationService', () => {
       clientId: 'client-id',
       channel: Channel.TELEGRAM,
       messageId: 'message-2',
+      botId: 'bot-1',
     });
 
     expect(makeSyncEventsRepository.create).not.toHaveBeenCalled();
@@ -100,8 +108,31 @@ describe('AggregationService', () => {
       payload: expect.objectContaining({
         clientId: 'client-id',
         channel: Channel.TELEGRAM,
+        botId: 'bot-1',
         debounceUntil: '2026-07-03T12:01:00.000Z',
         messageIds: ['message-1', 'message-2'],
+      }),
+    });
+  });
+
+  it('does not reuse pending event from a different bot', async () => {
+    makeSyncEventsRepository.findOne.mockResolvedValue(null);
+
+    await service.scheduleFromMessage({
+      clientId: 'client-id',
+      channel: Channel.TELEGRAM,
+      messageId: 'message-2',
+      botId: 'bot-2',
+    });
+
+    expect(makeSyncEventsRepository.create).toHaveBeenCalledWith({
+      clientId: 'client-id',
+      status: MakeSyncStatus.PENDING,
+      payload: expect.objectContaining({
+        clientId: 'client-id',
+        channel: Channel.TELEGRAM,
+        botId: 'bot-2',
+        messageIds: ['message-2'],
       }),
     });
   });

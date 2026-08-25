@@ -173,7 +173,40 @@ describe('SendPulseNormalizer', () => {
           text: 'hi test bot',
           direction: MessageDirection.IN,
         },
+        sourceBot: undefined,
       }),
     );
+  });
+
+  it('extracts source bot context from SendPulse payload', () => {
+    const normalized = normalizer.normalize({
+      title: 'incoming_message',
+      service: 'telegram',
+      bot: {
+        id: 'bot-id',
+        name: 'Main Bot',
+        url: 'https://t.me/main_bot',
+        channel: 'TELEGRAM',
+      },
+      contact: {
+        telegram_id: 'telegram-user-id',
+      },
+      info: {
+        message: {
+          channel_data: {
+            message_id: 123,
+            message: {
+              text: 'Hello',
+            },
+          },
+        },
+      },
+    });
+
+    expect(normalized.sourceBot).toEqual({
+      id: 'bot-id',
+      name: 'Main Bot',
+      url: 'https://t.me/main_bot',
+    });
   });
 });

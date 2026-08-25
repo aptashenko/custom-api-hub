@@ -139,6 +139,61 @@ describe('MakeSyncService', () => {
     });
   });
 
+  it('keeps bot context from pending event when sending payload', async () => {
+    const event = makeSyncEvent({
+      payload: {
+        clientId: 'client-id',
+        channel: Channel.TELEGRAM,
+        botId: 'bot-1',
+        botName: 'First Bot',
+        botUrl: 'https://t.me/first_bot',
+        debounceUntil: '2026-07-03T11:59:00.000Z',
+        messageIds: ['message-1'],
+      },
+    });
+
+    aggregationService.buildPendingPayload.mockResolvedValue({
+      client: {
+        id: 'client-id',
+      },
+      clientCard: {
+        id: 'client-id',
+        sendPulse: {
+          botId: 'bot-2',
+          botName: 'Second Bot',
+        },
+      },
+      channel: Channel.TELEGRAM,
+      botId: 'bot-2',
+      botName: 'Second Bot',
+      messages: [],
+      lastMessageAt: null,
+    });
+    repository.find.mockResolvedValue([event]);
+
+    await service.processPending();
+
+    expect(makeService.sendPayload).toHaveBeenCalledWith({
+      client: {
+        id: 'client-id',
+      },
+      clientCard: {
+        id: 'client-id',
+        sendPulse: {
+          botId: 'bot-1',
+          botName: 'First Bot',
+          botUrl: 'https://t.me/first_bot',
+        },
+      },
+      channel: Channel.TELEGRAM,
+      botId: 'bot-1',
+      botName: 'First Bot',
+      botUrl: 'https://t.me/first_bot',
+      messages: [],
+      lastMessageAt: null,
+    });
+  });
+
   it('marks sent on success', async () => {
     const event = makeSyncEvent();
 

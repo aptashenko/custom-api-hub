@@ -62,6 +62,9 @@ export class SendpulseWebhookController {
         clientId: client.id,
         channel: normalized.channel,
         messageId: message.id,
+        botId: normalized.sourceBot?.id,
+        botName: normalized.sourceBot?.name,
+        botUrl: normalized.sourceBot?.url,
       });
     }
 

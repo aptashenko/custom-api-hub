@@ -32,6 +32,9 @@ export class AggregationService {
     clientId: string;
     channel: Channel;
     messageId: string;
+    botId?: string;
+    botName?: string;
+    botUrl?: string;
   }): Promise<void> {
     const debounceUntil = new Date(Date.now() + DEBOUNCE_WINDOW_MS);
     const existingEvent = await this.findPendingEvent(params);
@@ -47,6 +50,9 @@ export class AggregationService {
       ...pendingPayload,
       clientId: params.clientId,
       channel: params.channel,
+      botId: params.botId,
+      botName: params.botName,
+      botUrl: params.botUrl,
       debounceUntil: debounceUntil.toISOString(),
       messageIds,
     };
@@ -56,7 +62,7 @@ export class AggregationService {
       await this.makeSyncEventsRepository.save(existingEvent);
 
       this.logger.log(
-        `Updated aggregation event clientId=${params.clientId} channel=${params.channel} makeSyncEventId=${existingEvent.id}`,
+        `Updated aggregation event clientId=${params.clientId} channel=${params.channel} botId=${params.botId ?? 'none'} makeSyncEventId=${existingEvent.id}`,
       );
       return;
     }
@@ -69,7 +75,7 @@ export class AggregationService {
     const savedEvent = await this.makeSyncEventsRepository.save(makeSyncEvent);
 
     this.logger.log(
-      `Created aggregation event clientId=${params.clientId} channel=${params.channel} makeSyncEventId=${savedEvent.id}`,
+      `Created aggregation event clientId=${params.clientId} channel=${params.channel} botId=${params.botId ?? 'none'} makeSyncEventId=${savedEvent.id}`,
     );
   }
 
@@ -84,15 +90,24 @@ export class AggregationService {
   private findPendingEvent(params: {
     clientId: string;
     channel: Channel;
+    botId?: string;
   }): Promise<MakeSyncEvent | null> {
     return this.makeSyncEventsRepository.findOne({
       where: {
         clientId: params.clientId,
         status: MakeSyncStatus.PENDING,
         sentAt: IsNull(),
-        payload: Raw((alias) => `${quoteRawAlias(alias)}->>'channel' = :channel`, {
-          channel: params.channel,
-        }),
+        payload: Raw(
+          (alias) =>
+            [
+              `${quoteRawAlias(alias)}->>'channel' = :channel`,
+              `COALESCE(${quoteRawAlias(alias)}->>'botId', '') = :botId`,
+            ].join(' AND '),
+          {
+            channel: params.channel,
+            botId: params.botId ?? '',
+          },
+        ),
       },
       order: {
         updatedAt: 'DESC',

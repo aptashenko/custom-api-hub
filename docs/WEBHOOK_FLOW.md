@@ -398,6 +398,9 @@ payload.debounceUntil <= now
 ```
 
 Потом он собирает финальный payload только по `messageIds` этого события.
+Pending events группируются по `clientId + channel + botId`, поэтому сообщения
+одного Telegram-пользователя из разных SendPulse bot отправляются в Make
+разными payload-ами.
 
 Если `NODE_ENV` не равен `production`, worker всё равно обрабатывает pending
 events, но Make не вызывается. Payload печатается в лог:
