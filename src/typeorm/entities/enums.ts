@@ -23,3 +23,9 @@ export enum MakeSyncStatus {
   SENT = 'SENT',
   FAILED = 'FAILED',
 }
+
+export enum MakeWebhookLogStatus {
+  PENDING = 'PENDING',
+  SENT = 'SENT',
+  FAILED = 'FAILED',
+}

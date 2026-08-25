@@ -13,6 +13,7 @@ import { GoogleAdsInsight } from './entities/google-ads-insight.entity';
 import { GoogleAdsSyncRun } from './entities/google-ads-sync-run.entity';
 import { LeadSource } from './entities/lead-source.entity';
 import { MakeSyncEvent } from './entities/make-sync-event.entity';
+import { MakeWebhookLog } from './entities/make-webhook-log.entity';
 import { MetaAd } from './entities/meta-ad.entity';
 import { MetaAdAccount } from './entities/meta-ad-account.entity';
 import { MetaAdCreative } from './entities/meta-ad-creative.entity';
@@ -41,6 +42,7 @@ export default new DataSource({
     GoogleAdsSyncRun,
     LeadSource,
     MakeSyncEvent,
+    MakeWebhookLog,
     MetaAd,
     MetaAdAccount,
     MetaAdCreative,

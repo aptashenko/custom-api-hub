@@ -412,6 +412,19 @@ Stubbed Make webhook payload=...
 MAKE_WEBHOOK_URL
 ```
 
+Перед попыткой отправки worker пишет отдельный лог исходящего Make webhook:
+
+```text
+Make webhook outbound makeSyncEventId=... attemptedAt=... clientId=... clientNumber=... name=... phone=... email=... username=... channel=... payload=...
+```
+
+Этот лог содержит финальный payload, который передаётся в `MakeService`.
+Искать можно по дате, `clientId`, `clientNumber`, имени, телефону, email,
+username или каналу.
+
+Та же попытка сохраняется в таблицу `make_webhook_log` вместе с финальным
+payload и статусом отправки.
+
 Если `NODE_ENV=production`, но `MAKE_WEBHOOK_URL` не настроен, event получает
 статус `FAILED`.
 
@@ -565,6 +578,80 @@ SELECT
 FROM make_sync_event
 ORDER BY "updatedAt" DESC
 LIMIT 10;
+```
+
+### Найти Make Webhook В Логах
+
+Если приложение запущено через PM2:
+
+```bash
+pm2 logs | grep 'Make webhook outbound'
+pm2 logs | grep 'Make webhook outbound' | grep '+10000000000'
+pm2 logs | grep 'Make webhook outbound' | grep '2026-07-04'
+```
+
+### Посмотреть Make Webhook Logs В БД
+
+Последние попытки отправки:
+
+```sql
+SELECT
+  id,
+  "makeSyncEventId",
+  status,
+  "attemptedAt",
+  "completedAt",
+  "clientId",
+  "clientNumber",
+  name,
+  phone,
+  email,
+  username,
+  channel,
+  error,
+  jsonb_pretty(payload) AS payload
+FROM make_webhook_log
+ORDER BY "attemptedAt" DESC
+LIMIT 20;
+```
+
+Поиск по пользователю:
+
+```sql
+SELECT
+  id,
+  status,
+  "attemptedAt",
+  "clientId",
+  "clientNumber",
+  name,
+  phone,
+  email,
+  username,
+  jsonb_pretty(payload) AS payload
+FROM make_webhook_log
+WHERE phone = '+10000000000'
+   OR email = 'alex@example.com'
+   OR username = 'alex_user'
+ORDER BY "attemptedAt" DESC;
+```
+
+Поиск по дате:
+
+```sql
+SELECT
+  id,
+  status,
+  "attemptedAt",
+  "clientId",
+  phone,
+  email,
+  username,
+  jsonb_pretty(payload) AS payload
+FROM make_webhook_log
+WHERE "attemptedAt" >= '2026-07-04 00:00:00+00'
+  AND "attemptedAt" < '2026-07-05 00:00:00+00'
+ORDER BY "attemptedAt" DESC;
 ```
 
 ### Посмотреть Последний Raw Webhook

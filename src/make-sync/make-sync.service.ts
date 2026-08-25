@@ -11,8 +11,13 @@ import { IsNull, Raw, Repository } from 'typeorm';
 
 import { AggregationService } from '../aggregation/aggregation.service';
 import { MakeService } from '../integrations/make/make.service';
-import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
+import {
+  Channel,
+  MakeSyncStatus,
+  MakeWebhookLogStatus,
+} from '../typeorm/entities/enums';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
+import { MakeWebhookLog } from '../typeorm/entities/make-webhook-log.entity';
 
 export interface MakeSyncResult {
   processed: number;
@@ -42,6 +47,8 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
   constructor(
     @InjectRepository(MakeSyncEvent)
     private readonly makeSyncEventsRepository: Repository<MakeSyncEvent>,
+    @InjectRepository(MakeWebhookLog)
+    private readonly makeWebhookLogsRepository: Repository<MakeWebhookLog>,
     private readonly aggregationService: AggregationService,
     private readonly makeService: MakeService,
     private readonly configService: ConfigService,
@@ -180,6 +187,7 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
       sent: 0,
       failed: 0,
     };
+    let makeWebhookLog: MakeWebhookLog | undefined;
 
     try {
       const clientId = this.getClientId(event);
@@ -191,7 +199,20 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
         messageIds,
       });
 
+      makeWebhookLog = await this.createMakeWebhookLog({
+        event,
+        payload: finalPayload,
+        attemptedAt: now,
+        clientId,
+        channel,
+      });
+
       await this.makeService.sendPayload(finalPayload);
+
+      makeWebhookLog.status = MakeWebhookLogStatus.SENT;
+      makeWebhookLog.completedAt = now;
+      makeWebhookLog.error = null;
+      await this.makeWebhookLogsRepository.save(makeWebhookLog);
 
       event.status = MakeSyncStatus.SENT;
       event.sentAt = now;
@@ -205,6 +226,13 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
       result.sent = 1;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
+
+      if (makeWebhookLog) {
+        makeWebhookLog.status = MakeWebhookLogStatus.FAILED;
+        makeWebhookLog.completedAt = now;
+        makeWebhookLog.error = message;
+        await this.makeWebhookLogsRepository.save(makeWebhookLog);
+      }
 
       event.status = MakeSyncStatus.FAILED;
       event.error = message;
@@ -284,5 +312,118 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
+  }
+
+  private async createMakeWebhookLog(params: {
+    event: MakeSyncEvent;
+    payload: Record<string, unknown>;
+    attemptedAt: Date;
+    clientId: string;
+    channel: Channel;
+  }): Promise<MakeWebhookLog> {
+    const client = this.getRecord(params.payload, 'client');
+    const clientCard = this.getRecord(params.payload, 'clientCard');
+    const profile = this.getRecord(clientCard, 'profile');
+    const searchableUser = {
+      clientNumber: this.getValue(clientCard, 'clientNumber'),
+      name: this.getValue(client, 'name') ?? this.getValue(profile, 'name'),
+      phone: this.getValue(client, 'phone') ?? this.getValue(profile, 'phone'),
+      email: this.getValue(client, 'email') ?? this.getValue(profile, 'email'),
+      username: this.getValue(profile, 'username'),
+    };
+
+    this.logger.log(
+      [
+        'Make webhook outbound',
+        `makeSyncEventId=${params.event.id}`,
+        `attemptedAt=${params.attemptedAt.toISOString()}`,
+        `clientId=${params.clientId}`,
+        `clientNumber=${this.formatLogValue(searchableUser.clientNumber)}`,
+        `name=${this.formatLogValue(searchableUser.name)}`,
+        `phone=${this.formatLogValue(searchableUser.phone)}`,
+        `email=${this.formatLogValue(searchableUser.email)}`,
+        `username=${this.formatLogValue(searchableUser.username)}`,
+        `channel=${params.channel}`,
+        `payload=${JSON.stringify(params.payload)}`,
+      ].join(' '),
+    );
+
+    return this.makeWebhookLogsRepository.save(
+      this.makeWebhookLogsRepository.create({
+        makeSyncEventId: params.event.id,
+        clientId: params.clientId,
+        clientNumber: this.toNumberOrNull(searchableUser.clientNumber),
+        name: this.toStringOrNull(searchableUser.name),
+        phone: this.toStringOrNull(searchableUser.phone),
+        email: this.toStringOrNull(searchableUser.email),
+        username: this.toStringOrNull(searchableUser.username),
+        channel: params.channel,
+        status: MakeWebhookLogStatus.PENDING,
+        payload: params.payload,
+        attemptedAt: params.attemptedAt,
+        completedAt: null,
+        error: null,
+      }),
+    );
+  }
+
+  private getRecord(
+    value: Record<string, unknown> | undefined,
+    key: string,
+  ): Record<string, unknown> | undefined {
+    if (!value) {
+      return undefined;
+    }
+
+    const nested = value[key];
+
+    return this.isRecord(nested) ? nested : undefined;
+  }
+
+  private getValue(
+    value: Record<string, unknown> | undefined,
+    key: string,
+  ): string | number | undefined {
+    if (!value) {
+      return undefined;
+    }
+
+    const nested = value[key];
+
+    if (typeof nested === 'string' || typeof nested === 'number') {
+      return nested;
+    }
+
+    return undefined;
+  }
+
+  private formatLogValue(value: string | number | undefined): string {
+    if (value === undefined || value === null || value === '') {
+      return 'unknown';
+    }
+
+    return JSON.stringify(value);
+  }
+
+  private toStringOrNull(value: string | number | undefined): string | null {
+    if (value === undefined || value === null || value === '') {
+      return null;
+    }
+
+    return String(value);
+  }
+
+  private toNumberOrNull(value: string | number | undefined): number | null {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      const parsed = Number(value);
+
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    return null;
   }
 }

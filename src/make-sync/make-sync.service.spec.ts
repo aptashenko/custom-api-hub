@@ -2,7 +2,11 @@ import { ConfigService } from '@nestjs/config';
 
 import { AggregationService } from '../aggregation/aggregation.service';
 import { MakeService } from '../integrations/make/make.service';
-import { Channel, MakeSyncStatus } from '../typeorm/entities/enums';
+import {
+  Channel,
+  MakeSyncStatus,
+  MakeWebhookLogStatus,
+} from '../typeorm/entities/enums';
 import { MakeSyncEvent } from '../typeorm/entities/make-sync-event.entity';
 import { MakeSyncService } from './make-sync.service';
 
@@ -10,6 +14,10 @@ describe('MakeSyncService', () => {
   let repository: {
     find: jest.Mock;
     findOne: jest.Mock;
+    save: jest.Mock;
+  };
+  let makeWebhookLogsRepository: {
+    create: jest.Mock;
     save: jest.Mock;
   };
   let aggregationService: jest.Mocked<
@@ -25,6 +33,13 @@ describe('MakeSyncService', () => {
     repository = {
       find: jest.fn(),
       findOne: jest.fn(),
+      save: jest.fn((input) => Promise.resolve(input)),
+    };
+    makeWebhookLogsRepository = {
+      create: jest.fn((input) => ({
+        id: 'make-webhook-log-id',
+        ...input,
+      })),
       save: jest.fn((input) => Promise.resolve(input)),
     };
     aggregationService = {
@@ -45,6 +60,7 @@ describe('MakeSyncService', () => {
     };
     service = new MakeSyncService(
       repository as never,
+      makeWebhookLogsRepository as never,
       aggregationService as never,
       makeService as never,
       configService as never,
@@ -99,6 +115,28 @@ describe('MakeSyncService', () => {
       messages: [],
       lastMessageAt: null,
     });
+    expect(makeWebhookLogsRepository.create).toHaveBeenCalledWith({
+      makeSyncEventId: 'make-sync-event-id',
+      clientId: 'client-id',
+      clientNumber: null,
+      name: null,
+      phone: null,
+      email: null,
+      username: null,
+      channel: Channel.TELEGRAM,
+      status: MakeWebhookLogStatus.PENDING,
+      payload: {
+        client: {
+          id: 'client-id',
+        },
+        channel: Channel.TELEGRAM,
+        messages: [],
+        lastMessageAt: null,
+      },
+      attemptedAt: new Date('2026-07-03T12:00:00.000Z'),
+      completedAt: null,
+      error: null,
+    });
   });
 
   it('marks sent on success', async () => {
@@ -124,6 +162,14 @@ describe('MakeSyncService', () => {
         },
       }),
     );
+    expect(makeWebhookLogsRepository.save).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        id: 'make-webhook-log-id',
+        status: MakeWebhookLogStatus.SENT,
+        completedAt: new Date('2026-07-03T12:00:00.000Z'),
+        error: null,
+      }),
+    );
   });
 
   it('marks failed on error', async () => {
@@ -141,6 +187,14 @@ describe('MakeSyncService', () => {
       expect.objectContaining({
         id: 'make-sync-event-id',
         status: MakeSyncStatus.FAILED,
+        error: 'Make is unavailable',
+      }),
+    );
+    expect(makeWebhookLogsRepository.save).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        id: 'make-webhook-log-id',
+        status: MakeWebhookLogStatus.FAILED,
+        completedAt: new Date('2026-07-03T12:00:00.000Z'),
         error: 'Make is unavailable',
       }),
     );
