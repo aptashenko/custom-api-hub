@@ -125,6 +125,19 @@ describe('SendpulseWebhookController', () => {
       messageId: 'message-id',
       leadSourceId: 'lead-source-id',
       aggregationScheduled: true,
+      processedCount: 1,
+      results: [
+        {
+          eventType: 'message_received',
+          channel: 'SENDPULSE',
+          clientId: 'client-id',
+          identityId: 'identity-id',
+          sendPulseProfileId: 'sendpulse-profile-id',
+          messageId: 'message-id',
+          leadSourceId: 'lead-source-id',
+          aggregationScheduled: true,
+        },
+      ],
     });
     expect(rawEventsService.create).toHaveBeenCalledWith({
       source: 'sendpulse',
@@ -150,5 +163,127 @@ describe('SendpulseWebhookController', () => {
         },
       },
     );
+  });
+
+  it('processes each SendPulse batch item with its own profile data', async () => {
+    const firstPayloadItem = {
+      title: 'outgoing_message',
+      service: 'telegram',
+      bot: {
+        id: 'bot-id',
+        name: 'Bot',
+      },
+      contact: {
+        id: 'krystyna-contact-id',
+        telegram_id: '447422494',
+        username: 'KrystynaSolonina',
+        name: 'Krystyna Solonina',
+        variables: {
+          email: 'krystyna@safeeraconsulting.com',
+          phone: '+380686937569',
+        },
+      },
+    };
+    const secondPayloadItem = {
+      title: 'outgoing_message',
+      service: 'telegram',
+      bot: {
+        id: 'bot-id',
+        name: 'Bot',
+      },
+      contact: {
+        id: 'yulia-contact-id',
+        telegram_id: '597623069',
+        name: 'Юлия',
+        variables: {
+          phone: '+380976335900',
+        },
+      },
+      info: {
+        message: {
+          channel_data: {
+            message_id: 93867,
+            message: {
+              text: 'Broadcast message',
+            },
+          },
+        },
+      },
+    };
+    const payload = [firstPayloadItem, secondPayloadItem];
+
+    rawEventsService.create.mockResolvedValue({
+      id: 'raw-event-id',
+    } as RawEvent);
+    clientResolverService.resolveFromEvent
+      .mockResolvedValueOnce({
+        client: {
+          id: 'krystyna-client-id',
+        } as never,
+        identity: {
+          id: 'krystyna-identity-id',
+        } as never,
+      })
+      .mockResolvedValueOnce({
+        client: {
+          id: 'yulia-client-id',
+        } as never,
+        identity: {
+          id: 'yulia-identity-id',
+        } as never,
+      });
+    messagesService.createFromEvent
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce({
+        id: 'message-id',
+      } as never);
+    leadSourcesService.createFromEvent.mockResolvedValue(null);
+    sendPulseProfilesService.upsertFromWebhookPayload
+      .mockResolvedValueOnce({
+        id: 'krystyna-profile-id',
+      } as never)
+      .mockResolvedValueOnce({
+        id: 'yulia-profile-id',
+      } as never);
+
+    await expect(controller.receive(payload)).resolves.toMatchObject({
+      status: 'received',
+      rawEventId: 'raw-event-id',
+      processedCount: 2,
+      results: [
+        {
+          clientId: 'krystyna-client-id',
+          identityId: 'krystyna-identity-id',
+          sendPulseProfileId: 'krystyna-profile-id',
+          messageId: undefined,
+        },
+        {
+          clientId: 'yulia-client-id',
+          identityId: 'yulia-identity-id',
+          sendPulseProfileId: 'yulia-profile-id',
+          messageId: 'message-id',
+        },
+      ],
+    });
+    expect(
+      sendPulseProfilesService.upsertFromWebhookPayload,
+    ).toHaveBeenNthCalledWith(1, firstPayloadItem, {
+      client: {
+        id: 'krystyna-client-id',
+      },
+      identity: {
+        id: 'krystyna-identity-id',
+      },
+    });
+    expect(
+      sendPulseProfilesService.upsertFromWebhookPayload,
+    ).toHaveBeenNthCalledWith(2, secondPayloadItem, {
+      client: {
+        id: 'yulia-client-id',
+      },
+      identity: {
+        id: 'yulia-identity-id',
+      },
+    });
   });
 });
