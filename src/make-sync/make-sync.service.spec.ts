@@ -4,6 +4,7 @@ import { AggregationService } from '../aggregation/aggregation.service';
 import { MakeService } from '../integrations/make/make.service';
 import {
   Channel,
+  MessageDirection,
   MakeSyncStatus,
   MakeWebhookLogStatus,
 } from '../typeorm/entities/enums';
@@ -48,8 +49,16 @@ describe('MakeSyncService', () => {
           id: 'client-id',
         },
         channel: Channel.TELEGRAM,
-        messages: [],
-        lastMessageAt: null,
+        messages: [
+          {
+            id: 'message-1',
+            text: 'Hello',
+            direction: MessageDirection.IN,
+            sender: 'CLIENT',
+            createdAt: '2026-07-03T11:59:00.000Z',
+          },
+        ],
+        lastMessageAt: '2026-07-03T11:59:00.000Z',
       }),
     };
     makeService = {
@@ -112,8 +121,16 @@ describe('MakeSyncService', () => {
         id: 'client-id',
       },
       channel: Channel.TELEGRAM,
-      messages: [],
-      lastMessageAt: null,
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Hello',
+          direction: MessageDirection.IN,
+          sender: 'CLIENT',
+          createdAt: '2026-07-03T11:59:00.000Z',
+        },
+      ],
+      lastMessageAt: '2026-07-03T11:59:00.000Z',
     });
     expect(makeWebhookLogsRepository.create).toHaveBeenCalledWith({
       makeSyncEventId: 'make-sync-event-id',
@@ -130,8 +147,16 @@ describe('MakeSyncService', () => {
           id: 'client-id',
         },
         channel: Channel.TELEGRAM,
-        messages: [],
-        lastMessageAt: null,
+        messages: [
+          {
+            id: 'message-1',
+            text: 'Hello',
+            direction: MessageDirection.IN,
+            sender: 'CLIENT',
+            createdAt: '2026-07-03T11:59:00.000Z',
+          },
+        ],
+        lastMessageAt: '2026-07-03T11:59:00.000Z',
       },
       attemptedAt: new Date('2026-07-03T12:00:00.000Z'),
       completedAt: null,
@@ -166,8 +191,16 @@ describe('MakeSyncService', () => {
       channel: Channel.TELEGRAM,
       botId: 'bot-2',
       botName: 'Second Bot',
-      messages: [],
-      lastMessageAt: null,
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Hello',
+          direction: MessageDirection.IN,
+          sender: 'CLIENT',
+          createdAt: '2026-07-03T11:59:00.000Z',
+        },
+      ],
+      lastMessageAt: '2026-07-03T11:59:00.000Z',
     });
     repository.find.mockResolvedValue([event]);
 
@@ -189,9 +222,91 @@ describe('MakeSyncService', () => {
       botId: 'bot-1',
       botName: 'First Bot',
       botUrl: 'https://t.me/first_bot',
-      messages: [],
-      lastMessageAt: null,
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Hello',
+          direction: MessageDirection.IN,
+          sender: 'CLIENT',
+          createdAt: '2026-07-03T11:59:00.000Z',
+        },
+      ],
+      lastMessageAt: '2026-07-03T11:59:00.000Z',
     });
+  });
+
+  it('skips Make webhook when due event has no client reply', async () => {
+    const event = makeSyncEvent();
+
+    aggregationService.buildPendingPayload.mockResolvedValue({
+      client: {
+        id: 'client-id',
+      },
+      channel: Channel.TELEGRAM,
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Bot reply',
+          direction: MessageDirection.OUT,
+          sender: 'BOT',
+          createdAt: '2026-07-03T11:59:00.000Z',
+        },
+      ],
+      lastMessageAt: '2026-07-03T11:59:00.000Z',
+    });
+    repository.find.mockResolvedValue([event]);
+
+    await expect(service.processPending()).resolves.toEqual({
+      processed: 1,
+      sent: 0,
+      failed: 0,
+    });
+    expect(makeService.sendPayload).not.toHaveBeenCalled();
+    expect(makeWebhookLogsRepository.create).not.toHaveBeenCalled();
+    expect(repository.save).toHaveBeenCalledWith(
+      expect.objectContaining({
+        id: 'make-sync-event-id',
+        status: MakeSyncStatus.SENT,
+        sentAt: new Date('2026-07-03T12:00:00.000Z'),
+        error: null,
+      }),
+    );
+  });
+
+  it('sends Make webhook when a client reply is followed by a bot message', async () => {
+    const event = makeSyncEvent();
+
+    aggregationService.buildPendingPayload.mockResolvedValue({
+      client: {
+        id: 'client-id',
+      },
+      channel: Channel.TELEGRAM,
+      messages: [
+        {
+          id: 'message-1',
+          text: 'Client reply',
+          direction: MessageDirection.IN,
+          sender: 'CLIENT',
+          createdAt: '2026-07-03T11:59:00.000Z',
+        },
+        {
+          id: 'message-2',
+          text: 'Bot reply',
+          direction: MessageDirection.OUT,
+          sender: 'BOT',
+          createdAt: '2026-07-03T11:59:10.000Z',
+        },
+      ],
+      lastMessageAt: '2026-07-03T11:59:10.000Z',
+    });
+    repository.find.mockResolvedValue([event]);
+
+    await expect(service.processPending()).resolves.toEqual({
+      processed: 1,
+      sent: 1,
+      failed: 0,
+    });
+    expect(makeService.sendPayload).toHaveBeenCalledTimes(1);
   });
 
   it('marks sent on success', async () => {
@@ -212,8 +327,16 @@ describe('MakeSyncService', () => {
             id: 'client-id',
           },
           channel: Channel.TELEGRAM,
-          messages: [],
-          lastMessageAt: null,
+          messages: [
+            {
+              id: 'message-1',
+              text: 'Hello',
+              direction: MessageDirection.IN,
+              sender: 'CLIENT',
+              createdAt: '2026-07-03T11:59:00.000Z',
+            },
+          ],
+          lastMessageAt: '2026-07-03T11:59:00.000Z',
         },
       }),
     );

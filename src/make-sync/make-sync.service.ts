@@ -13,6 +13,7 @@ import { AggregationService } from '../aggregation/aggregation.service';
 import { MakeService } from '../integrations/make/make.service';
 import {
   Channel,
+  MessageDirection,
   MakeSyncStatus,
   MakeWebhookLogStatus,
 } from '../typeorm/entities/enums';
@@ -202,6 +203,19 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
         event.payload,
       );
 
+      if (!this.hasClientReply(finalPayload)) {
+        event.status = MakeSyncStatus.SENT;
+        event.sentAt = now;
+        event.payload = finalPayload;
+        event.error = null;
+        await this.makeSyncEventsRepository.save(event);
+
+        this.logger.log(
+          `Skipped make sync event without client reply makeSyncEventId=${event.id} status=SENT`,
+        );
+        return result;
+      }
+
       makeWebhookLog = await this.createMakeWebhookLog({
         event,
         payload: finalPayload,
@@ -315,6 +329,22 @@ export class MakeSyncService implements OnModuleInit, OnModuleDestroy {
 
   private isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
+  }
+
+  private hasClientReply(payload: Record<string, unknown>): boolean {
+    if (!Array.isArray(payload.messages)) {
+      return false;
+    }
+
+    return payload.messages.some((message) => {
+      if (!this.isRecord(message)) {
+        return false;
+      }
+
+      return (
+        message.direction === MessageDirection.IN || message.sender === 'CLIENT'
+      );
+    });
   }
 
   private applyEventBotContext(
