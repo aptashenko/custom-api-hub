@@ -114,6 +114,39 @@ describe('SendPulseNormalizer', () => {
     expect(normalized.message).toBeUndefined();
   });
 
+  it('does not create a message from run_custom_flow last message context', () => {
+    const normalized = normalizer.normalize({
+      title: 'run_custom_flow',
+      service: 'telegram',
+      info: {
+        flow_id: 'flow-id',
+      },
+      contact: {
+        telegram_id: '844417616',
+        username: 'hakunna436',
+        last_message: '/manager',
+        last_message_data: {
+          message_id: 23830,
+          message: {
+            text: '/manager',
+          },
+        },
+      },
+    });
+
+    expect(normalized).toEqual(
+      expect.objectContaining({
+        eventType: 'run_custom_flow',
+        externalUserId: '844417616',
+        externalMessageId: '23830',
+        client: expect.objectContaining({
+          username: 'hakunna436',
+        }),
+        message: undefined,
+      }),
+    );
+  });
+
   it('detects telegram channel', () => {
     const normalized = normalizer.normalize({
       channel: 'Telegram Bot',

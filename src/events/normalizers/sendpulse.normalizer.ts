@@ -14,7 +14,9 @@ export class SendPulseNormalizer {
       this.getString(eventPayload, ['action']) ??
       this.getString(eventPayload, ['title']) ??
       'unknown';
-    const isOutgoingEvent = eventType.toLowerCase() === 'outgoing_message';
+    const normalizedEventType = eventType.toLowerCase();
+    const isIncomingEvent = normalizedEventType === 'incoming_message';
+    const isOutgoingEvent = normalizedEventType === 'outgoing_message';
 
     const externalUserId =
       this.getString(eventPayload, ['contact', 'telegram_id']) ??
@@ -49,18 +51,18 @@ export class SendPulseNormalizer {
         'message',
         'text',
       ]);
-    const lastMessageText = isOutgoingEvent
-      ? undefined
-      : this.getString(eventPayload, [
+    const incomingLastMessageText = isIncomingEvent
+      ? this.getString(eventPayload, [
           'contact',
           'last_message_data',
           'message',
           'text',
         ]) ??
-        this.getString(eventPayload, ['contact', 'last_message']);
+        this.getString(eventPayload, ['contact', 'last_message'])
+      : undefined;
     const messageText =
       directMessageText ??
-      lastMessageText ??
+      incomingLastMessageText ??
       this.getString(eventPayload, ['message']) ??
       this.getString(eventPayload, ['text']);
 
